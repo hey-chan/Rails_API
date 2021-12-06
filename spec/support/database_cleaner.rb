@@ -1,5 +1,7 @@
 # Setting up before and after I do my tests
 RSpec.configure do |config| 
+  # before the entire test suite runs
+  # gets rid of clutter
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
