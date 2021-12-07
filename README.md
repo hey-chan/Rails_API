@@ -1,7 +1,9 @@
 # PARKS_API
 
 ## built for the Picnic Victoria App
-Just checking and testing that we are on the Dev Branch
+Just checking and testing that we are on the `dev` Branch.
+By default, you should be on the `dev` branch after forking from PicnicVic repo.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
