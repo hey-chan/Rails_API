@@ -12,7 +12,7 @@ Things you may want to cover:
 
 - Ruby version: ruby 2.7.2p137
 
-- Rails version: Rails 6.1.4.1
+- Rails version: rails 6.1.4.1
 
 - System dependencies
 
