@@ -23,3 +23,8 @@ if Feature.count == 0
   end
   puts "Created features"
 end
+
+if User.count == 0
+  User.create(username: "test", email: "test@picvic.com.au", password: "picvic", password_confirmation: "picvic")
+  puts "Created a user"
+end
