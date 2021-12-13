@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :address do
-    number { 1 }
-    street { "MyString" }
-    suburb { "MyString" }
-    postcode { "MyString" }
+    number { 120 }
+    street { "Spencer Street" }
+    suburb { "Melbourne" }
+    postcode { "3000" }
   end
 end
