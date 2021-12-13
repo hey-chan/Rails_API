@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :feature do
-    name { "MyString" }
+    name { "bbq" }
   end
 end
