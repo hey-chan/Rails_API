@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+if Category.count == 0
+  categories = ["all", "community", "child friendly", "dog park", "large park", "nature", "skatepark", "sports"]
+  categories.each do |category|
+    Category.create(name: category)
+    puts "Created #{category} category"
+  end
+  puts "Created categories"
+end
+
+if Feature.count == 0
+  features = ["all", "accessible", "basketball", "bbq", "bins", "botanical", "cultural", "educational", "events", "exercise", "fenced", "food nearby", "farm", "grassed", "heritage", "lake", "market", "playground", "river", "seating", "shelter", "skate", "toilets", "velodrome"]
+  features.each do |feature|
+    Feature.create(name: feature)
+    puts "Created #{feature} feature"
+  end
+  puts "Created features"
+end
