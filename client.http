@@ -20,24 +20,69 @@ GET http://localhost:3000/parks/1/comments/
 
 
 
-### LOGIN with correct details
-POST http://localhost:3000/auth/login
+### LOGIN with correct details - no longer works: "email" replaced with "login"
+# POST http://localhost:3000/auth/signin
+# Content-Type: application/json
+
+# {
+#   "auth": {
+#     "email": "alice@picvic.com.au",
+#     "password": "Apicvic"
+#   }
+# }
+
+# ### LOGIN with INCORRECT details - no longer works: "email" replaced with "login"
+# POST http://localhost:3000/auth/signin
+# Content-Type: application/json
+
+# {
+#   "auth": {
+#     "email": "alice@picvic.com.au",
+#     "password": "nottherightpassword"
+#   }
+# }
+
+### REGISTERING a new user
+# If this was sent again, request will fail with code 422
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "test@testing.com",
+  "username": "test-user1",
+  "password": "test-password1",
+  "password_confirmation": "test-password1"
+}
+
+### ATTEMPTING to register new user with "@" in username
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "test1@testing.com",
+  "username": "test@user1",
+  "password": "test-password2",
+  "password_confirmation": "test-password2"
+}
+
+### SIGN IN with EMAIL - updated
+POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
   "auth": {
-    "email": "alice@picvic.com.au",
+    "signin": "alice@picvic.com.au",
     "password": "Apicvic"
   }
 }
 
-### LOGIN with INCORRECT details
-POST http://localhost:3000/auth/login
+### SIGN IN with USERNAME - updated
+POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
   "auth": {
-    "email": "alice@picvic.com.au",
-    "password": "nottherightpassword"
+    "signin": "alice",
+    "password": "Apicvic"
   }
 }

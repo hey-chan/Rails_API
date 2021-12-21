@@ -18,5 +18,8 @@ Rails.application.routes.draw do
   get "/parks/:id/comments", to: "posts#show", as: "comment"
 
   ### Authentication routing
-  post "/auth/login", to: "auth#login", as: "login"
+  # Login with a user
+  post "/auth/signin", to: "auth#signin", as: "signin"
+  # Register a user
+  post "/auth/signup", to: "auth#signup", as: "signup"
 end
