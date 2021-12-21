@@ -25,6 +25,7 @@ RSpec.describe "Parks", type: :request do
         get "/parks/1"
       end
 
+      # TEST failing despite manual testing working to plan
       it "should respond with 200 ok" do
         expect(response).to have_http_status(200)
       end
@@ -37,8 +38,8 @@ RSpec.describe "Parks", type: :request do
       #   expect(response.body).to include("community")
       # end
 
-      # it "should respond with the default factory content" do
-      #   expect(response.name).to include("Flagstaff Gardens")
+      # it "has the right name" do
+      #   expect(response.name).to eq("Flagstaff Gardens")
       # end
     end
 
