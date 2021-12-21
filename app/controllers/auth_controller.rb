@@ -1,10 +1,9 @@
 class AuthController < ApplicationController
-  def login
-    user = User.find_by(email: auth_params[:email])
+  # TO LOGIN with a user
+  def signin
+    user = User.signin(auth_params[:signin]).first
     if user&.authenticate(auth_params[:password])
-      payload = { user_id: user.id, exp: 1.hour.from_now.to_i }
-      # RESPONSIBLE for creating web token
-      token = JWT.encode(payload, Rails.application.credentials.dig(:secret_key_base))
+      token = JwtServices.encode(user)
       # USEFUL for React
       render json: { jwt: token, username: user.username }
     else
@@ -13,10 +12,24 @@ class AuthController < ApplicationController
     end
   end
 
+  # SIGN UP and create user
+  def signup
+    # Creates a user
+    user = User.create(auth_params)
+    # If no errors present, user will be created
+    unless user.errors.any?
+      token = JwtServices.encode(user)
+      render json: { jwt: token, username: user.username }, status: 201
+    else
+      # If there are errors, error message will render
+      render json: { error: user.errors.full_messages }, status: 422
+    end
+  end
+
   private
 
   def auth_params
     # ALLOWED parameters
-    params.require(:auth).permit(:auth, :email, :password, :password_confirmation, :username)
+    params.require(:auth).permit(:auth, :signin, :email, :password, :password_confirmation, :username)
   end
 end
