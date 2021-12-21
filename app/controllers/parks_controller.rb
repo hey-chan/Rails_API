@@ -3,7 +3,7 @@ class ParksController < ApplicationController
 
   # Show all parks available
   def index
-    parks = Park.all.includes(:category, :feature, :address)
+    parks = Park.all.includes(:category, :feature)
     render json: parks, include: { category: { only: :name }, feature: { only: :name } }, status: 200
   end
 

@@ -25,7 +25,7 @@ RSpec.describe "Parks", type: :request do
         get "/parks/1"
       end
 
-      # TEST failing despite manual testing working to plan
+      # TEST failing despite manual testing (via REST Client) working accordingly to plan
       it "should respond with 200 ok" do
         expect(response).to have_http_status(200)
       end
