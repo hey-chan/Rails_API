@@ -17,3 +17,27 @@ GET http://localhost:3000/parks/99
 ### GET POSTS from USERS for a park. 
 # Nb. HOW to isolate comments for a particular park
 GET http://localhost:3000/parks/1/comments/
+
+
+
+### LOGIN with correct details
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "auth": {
+    "email": "alice@picvic.com.au",
+    "password": "Apicvic"
+  }
+}
+
+### LOGIN with INCORRECT details
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "auth": {
+    "email": "alice@picvic.com.au",
+    "password": "nottherightpassword"
+  }
+}
