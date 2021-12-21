@@ -20,10 +20,32 @@ if Category.count == 0
     Category.create(name: category)
     puts "Created #{category} category"
   end
-  puts "Created categories"
 end
 
 if User.count == 0
-  User.create(username: "test", email: "test@picvic.com.au", password: "picvic", password_confirmation: "picvic")
-  puts "Created a user"
+  User.create(username: "alice", email: "alice@picvic.com.au", password: "Apicvic", password_confirmation: "Apicvic")
+  User.create(username: "bob", email: "bob@picvic.com.au", password: "Bpicvic", password_confirmation: "Bpicvic")
+  User.create(username: "charlie", email: "charlie@picvic.com.au", password: "Cpicvic", password_confirmation: "Cpicvic")
+  puts "Created users"
+end
+
+if Address.count == 0
+  Address.create(street: "St Kilda Road", suburb: "Melbourne", postcode: "3004")
+  Address.create(number: 1, street: "K Road", suburb: "Werribee", postcode: "3029")
+  Address.create(number: 40, street: "Maribyrnong Blvd", suburb: "Footscray", postcode: "3011")
+  puts "Created addresses"
+end
+
+if Park.count == 0
+  Park.create(category_id: 6, feature_id: 6, address_id: 1, name: "Royal Botanical Gardens", cheese: "Brie", wine: "Red wine", latitude: -37.8300822, longitude: 144.9754787)
+  Park.create(category_id: 2, feature_id: 9, address_id: 2, name: "Werribee Park", cheese: "Bocconcini", wine: "Merlot", latitude: -37.9400935, longitude: 144.6711291)
+  Park.create(category_id: 5, feature_id: 2, address_id: 3, name: "Footscray Park", cheese: "Bocconcini", wine: "Merlot", latitude: -377930638, longitude: 144.9049412)
+  puts "Created parks"
+end
+
+if Post.count == 0
+  Post.create(user_id: 1, park_id: 1, comment: "This park is really pretty!!!!", rating: 4)
+  Post.create(user_id: 2, park_id: 2, comment: "So many flowers!!! So many colours. So beautiful", rating: 5)
+  Post.create(user_id: 3, park_id: 3, comment: "Pretty meh park", rating: 1)
+  puts "Created post for park"
 end
