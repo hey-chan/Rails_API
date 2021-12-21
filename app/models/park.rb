@@ -1,5 +1,6 @@
 class Park < ApplicationRecord
   belongs_to :category
-  has_many :feature
+  belongs_to :feature
   has_one :address
+  has_many :post
 end

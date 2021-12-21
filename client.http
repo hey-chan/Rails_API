@@ -1,0 +1,19 @@
+### RENDER CATEGORIES
+GET http://localhost:3000/categories
+
+### RENDER FEATURES
+GET http://localhost:3000/features
+
+
+### RENDER ALL PARKS LIST
+GET http://localhost:3000/parks
+
+### RENDER an individual park (that exists)
+GET http://localhost:3000/parks/2
+
+### RENDER an individual park (that DOESN'T exists)
+GET http://localhost:3000/parks/99
+
+### GET POSTS from USERS for a park. 
+# Nb. HOW to isolate comments for a particular park
+GET http://localhost:3000/parks/1/comments/
