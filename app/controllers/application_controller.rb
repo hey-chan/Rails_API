@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  # We will need this repeated functionlaity
+  # We will need this repeated functionlaity.
   def authenticate
   end
 
