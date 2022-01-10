@@ -23,9 +23,9 @@ if Category.count == 0
 end
 
 if User.count == 0
-  User.create(username: "alice", email: "alice@picvic.com.au", password: "Apicvic", password_confirmation: "Apicvic")
-  User.create(username: "bob", email: "bob@picvic.com.au", password: "Bpicvic", password_confirmation: "Bpicvic")
-  User.create(username: "charlie", email: "charlie@picvic.com.au", password: "Cpicvic", password_confirmation: "Cpicvic")
+  User.create(username: "admin", email: "admin@picvic.com.au", password: "adminPic", password_confirmation: "adminPic", admin: true)
+  User.create(username: "bob", email: "bob@picvic.com.au", password: "Bpicvic", password_confirmation: "Bpicvic", admin: false)
+  User.create(username: "charlie", email: "charlie@picvic.com.au", password: "Cpicvic", password_confirmation: "Cpicvic", admin: false)
   puts "Created users"
 end
 
