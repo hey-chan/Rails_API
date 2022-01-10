@@ -8,6 +8,16 @@ class JwtServices
     token = JWT.encode(payload, @secret)
   end
 
-  # def self.decode()
-  # end
+  def self.decode(token)
+    begin
+      # PAYLOAD WILL COME FROM HERE!
+      payload = JWT.decode(token, @secret, true)
+      # JWT will retrun an array, hence array method
+      # Implicitly returned
+      payload[0]
+    rescue Exception => e
+      pp e
+      nil
+    end
+  end
 end
