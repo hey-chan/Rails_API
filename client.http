@@ -154,7 +154,7 @@ Content-Type: application/json
 # Association for user needed in order to create a Park
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4MjQ3Nzl9.UULDkZQLv66Cu5Bcg7w2Fl5hYv4RgHI0dQoTbjkchZc"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NjIyODN9.zDBaYy8tk-ZaYFTOrlJnOtSEnBLUY1EFXj4J7hpk0b8"
 
 {
   "category_id": 1,
