@@ -78,8 +78,8 @@ Content-Type: application/json
 
 {
   "auth": {
-    "signin": "alice@picvic.com.au",
-    "password": "Apicvic"
+    "signin": "admin@picvic.com.au",
+    "password": "adminPic"
   }
 }
 
@@ -89,15 +89,70 @@ Content-Type: application/json
 
 {
   "auth": {
-    "signin": "alice",
-    "password": "Apicvic"
+    "signin": "admin",
+    "password": "adminPic"
   }
 }
+
+### POST a comment without a JWT
+POST http://localhost:3000/parks/1/comments
+Content-Type: application/json
+
+{ 
+  "user_id": 1,
+  "park_id": 1,
+  "comment": "This will not comment",
+  "rating": 5
+}
+
+
+### POST a comment with JWT
+POST http://localhost:3000/parks/1/comments
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4MTc3NTl9.fsadNv1oiYeA8sFkimjyyyX0ANjnY35WemKaCM8USWI"
+
+{
+  "user_id": 1,
+  "park_id": 1,
+  "comment": "This will comment on a park",
+  "rating": 5
+}
+
+### POST a comment with JWT (again)
+POST http://localhost:3000/parks/1/comments
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4MTc3NTl9.fsadNv1oiYeA8sFkimjyyyX0ANjnY35WemKaCM8USWI"
+
+{
+  "user_id": 1,
+  "park_id": 1,
+  "comment": "This will make a comment again!",
+  "rating": 5
+}
+
 
 
 ### POST a park request without a token
 POST http://localhost:3000/parks
 Content-Type: application/json
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 1,
+  "name": "This park should not post",
+  "cheese": "cheese we wont be able to eat",
+  "wine": "red wine we can't drink",
+  "latitude": -54.46675,
+  "longitude": 27.00203
+}
+
+### POST with token and admin privilege
+# NB: jwt will need to be updated each time after 1hr
+# Association for user needed in order to create a Park
+POST http://localhost:3000/parks
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4MTY4MTB9.3hamX4cBfrropjxe1TKdoOtgiOFylg3tseRF9aiCi30"
 
 {
   "category_id": 1,
@@ -109,3 +164,5 @@ Content-Type: application/json
   "latitude": -54.46675,
   "longitude": 27.00203
 }
+
+

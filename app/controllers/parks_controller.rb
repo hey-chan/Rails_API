@@ -14,11 +14,11 @@ class ParksController < ApplicationController
   end
 
   def create
-    park = current_user.parks.create(park_params) && current_user.admin
+    park = current_user.parks.create(park_params)
     unless park.errors.any?
       render json: park, include: { category: { only: :name }, feature: { only: :name } }, status: 201
     else
-      render json: { errors: post.errors.full_messages }, status: 422
+      render json: { errors: park.errors.full_messages }, status: 422
     end
   end
 

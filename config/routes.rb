@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   ### TESTING: STILL WORKING PROGRESS
   get "/parks/:id/comments", to: "posts#index", as: "reviews"
 
+  # Create a comment for a park
+  post "/parks/:id/comments", to: "posts#create"
+
   #
 
   ### Authentication routing

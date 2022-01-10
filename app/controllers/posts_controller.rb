@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   # FOR COMMENTS
   before_action :set_park, only: [:index]
+  before_action :authenticate, only: [:create, :update, :destroy]
   # before_action :set_comment, only: [:index]
 
   # THIS SHOWS ALL COMMENTS FOR EVERY PARK. WE DON'T WANT THIS
@@ -10,6 +11,15 @@ class PostsController < ApplicationController
     if posts.id == @park
       render json: posts, include: { park: { only: :name }, user: { only: :username } }, status: 200
       puts "This comment exists"
+    end
+  end
+
+  def create
+    post = current_user.posts.create(post_params)
+    unless post.errors.any?
+      render json: post, include: { park: { only: :name }, user: { only: :username } }, status: 201
+    else
+      render json: { errors: post.errors.full_messages }, status: 422
     end
   end
 
@@ -31,6 +41,10 @@ class PostsController < ApplicationController
       # Will run if exception is raised
       render json: { error: "Could not find this park" }, status: 404
     end
+  end
+
+  def post_params
+    params.require(:post).permit(:user_id, :park_id, :comment, :rating)
   end
 
   # def set_comment
