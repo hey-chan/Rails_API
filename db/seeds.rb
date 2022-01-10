@@ -47,5 +47,7 @@ if Post.count == 0
   Post.create(user_id: 1, park_id: 1, comment: "This park is really pretty!!!!", rating: 4)
   Post.create(user_id: 2, park_id: 2, comment: "So many flowers!!! So many colours. So beautiful", rating: 5)
   Post.create(user_id: 3, park_id: 3, comment: "Pretty meh park", rating: 1)
+  Post.create(user_id: 2, park_id: 2, comment: "So many trees!!! So green", rating: 5)
+  Post.create(user_id: 3, park_id: 3, comment: "No toilet.", rating: 1)
   puts "Created post for park"
 end
