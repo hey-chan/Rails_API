@@ -15,10 +15,12 @@ Rails.application.routes.draw do
   ### Comments connected to each part
   # Nb. Needs to be worked on more
   # Issue: connecting comments associated with the param id
-  get "/parks/:id/comments", to: "posts#show", as: "comment"
+  # get "/parks/:id/comments", to: "posts#show", as: "comment"
+  ### TESTI
+  get "/parks/:id/comments", to: "posts#index", as: "reviews"
 
   ### Authentication routing
-  # Login with a user
+  # Login with ax`` user
   post "/auth/signin", to: "auth#signin", as: "signin"
   # Register a user
   post "/auth/signup", to: "auth#signup", as: "signup"

@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
-  has_one :user
-  has_one :park
+  belongs_to :user
+  belongs_to :park
 end
