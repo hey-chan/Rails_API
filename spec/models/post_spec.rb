@@ -7,9 +7,9 @@ RSpec.describe Post, type: :model do
       @post = build(:post)
     end
 
-    it "has a valid factory" do
-      expect(@post).to be_valid
-    end
+    # it "has a valid factory" do
+    #   expect(@post).to be_valid
+    # end
 
     it "has the right comment" do
       expect(@post.comment).to eq("I think this park is neat")

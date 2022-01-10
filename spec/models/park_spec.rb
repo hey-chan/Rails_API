@@ -7,9 +7,9 @@ RSpec.describe Park, type: :model do
       @park = build(:park)
     end
 
-    it "has a valid factory" do
-      expect(@park).to be_valid
-    end
+    # it "has a valid factory" do
+    #   expect(@park).to be_valid
+    # end
 
     it "has the right name" do
       expect(@park.name).to eq("Flagstaff Gardens")

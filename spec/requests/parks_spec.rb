@@ -20,6 +20,13 @@ RSpec.describe "Parks", type: :request do
   end
 
   describe "GET /parks/:id" do
+    before(:all) do
+      @address = create(:address, number: 10, street: "Main Street", suburb: "Main town", postcode: "1234")
+      @category = create(:category, name: "test category")
+      @feature = create(:feature, name: "test feature")
+      create(:park, name: "Test park", address_id: @address.id, category_id: @category.id, feature_id: @feature.id, latitude: 123.123, longitude: 123.123)
+    end
+
     context "valid park id" do
       before(:each) do
         get "/parks/1"

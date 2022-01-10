@@ -23,9 +23,9 @@ if Category.count == 0
 end
 
 if User.count == 0
-  User.create(username: "alice", email: "alice@picvic.com.au", password: "Apicvic", password_confirmation: "Apicvic")
-  User.create(username: "bob", email: "bob@picvic.com.au", password: "Bpicvic", password_confirmation: "Bpicvic")
-  User.create(username: "charlie", email: "charlie@picvic.com.au", password: "Cpicvic", password_confirmation: "Cpicvic")
+  User.create(username: "admin", email: "admin@picvic.com.au", password: "adminPic", password_confirmation: "adminPic", admin: true)
+  User.create(username: "bob", email: "bob@picvic.com.au", password: "Bpicvic", password_confirmation: "Bpicvic", admin: false)
+  User.create(username: "charlie", email: "charlie@picvic.com.au", password: "Cpicvic", password_confirmation: "Cpicvic", admin: false)
   puts "Created users"
 end
 
@@ -33,6 +33,7 @@ if Address.count == 0
   Address.create(street: "St Kilda Road", suburb: "Melbourne", postcode: "3004")
   Address.create(number: 1, street: "K Road", suburb: "Werribee", postcode: "3029")
   Address.create(number: 40, street: "Maribyrnong Blvd", suburb: "Footscray", postcode: "3011")
+  Address.create(number: 69, street: "Sex Blvd", suburb: "St Kilda", postcode: "3011")
   puts "Created addresses"
 end
 
@@ -44,10 +45,10 @@ if Park.count == 0
 end
 
 if Post.count == 0
-  Post.create(user_id: 1, park_id: 1, comment: "This park is really pretty!!!!", rating: 4)
-  Post.create(user_id: 2, park_id: 2, comment: "So many flowers!!! So many colours. So beautiful", rating: 5)
-  Post.create(user_id: 3, park_id: 3, comment: "Pretty meh park", rating: 1)
-  Post.create(user_id: 2, park_id: 2, comment: "So many trees!!! So green", rating: 5)
-  Post.create(user_id: 3, park_id: 3, comment: "No toilet.", rating: 1)
+  Post.create(user_id: 1, park_id: 3, comment: "This park is really pretty!!!!", rating: 4)
+  Post.create(user_id: 2, park_id: 1, comment: "So many flowers!!! So many colours. So beautiful", rating: 5)
+  Post.create(user_id: 3, park_id: 2, comment: "Pretty meh park", rating: 1)
+  Post.create(user_id: 1, park_id: 1, comment: "Worse park is the history of all parks!", rating: 2)
+  Post.create(user_id: 2, park_id: 2, comment: "This is a park that exists", rating: 2)
   puts "Created post for park"
 end
