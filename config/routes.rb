@@ -9,18 +9,24 @@ Rails.application.routes.draw do
 
   ### PARKS stuff
   get "/parks", to: "parks#index", as: "parks"
+
   # Displays one park based on park.id
   get "/parks/:id", to: "parks#show", as: "park"
+
+  # POST a park (this will be restricted to ONLY admin)
+  post "/parks", to: "parks#create"
 
   ### Comments connected to each part
   # Nb. Needs to be worked on more
   # Issue: connecting comments associated with the param id
   # get "/parks/:id/comments", to: "posts#show", as: "comment"
-  ### TESTI
+  ### TESTING: STILL WORKING PROGRESS
   get "/parks/:id/comments", to: "posts#index", as: "reviews"
 
+  #
+
   ### Authentication routing
-  # Login with ax`` user
+  # Login with a user
   post "/auth/signin", to: "auth#signin", as: "signin"
   # Register a user
   post "/auth/signup", to: "auth#signup", as: "signup"

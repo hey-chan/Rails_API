@@ -1,5 +1,6 @@
 class ParksController < ApplicationController
   before_action :set_park, only: [:show]
+  before_action :authenticate, only: [:create, :update, :destroy]
 
   # Show all parks available
   def index
@@ -12,6 +13,15 @@ class ParksController < ApplicationController
     render json: @park, include: { category: { only: :name }, feature: { only: :name } }, status: 200
   end
 
+  def create
+    park = current_user.parks.create(park_params) && current_user.admin
+    unless park.errors.any?
+      render json: park, include: { category: { only: :name }, feature: { only: :name } }, status: 201
+    else
+      render json: { errors: post.errors.full_messages }, status: 422
+    end
+  end
+
   private
 
   def set_park
@@ -21,5 +31,9 @@ class ParksController < ApplicationController
       # Will run if exception is raised
       render json: { error: "Could not find this park" }, status: 404
     end
+  end
+
+  def park_params
+    params.require(:park).permit(:name, :latitude, :longitude, :category_id, :feature_id, :address_id, :cheese, :wine)
   end
 end

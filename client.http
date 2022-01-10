@@ -14,7 +14,7 @@ GET http://localhost:3000/parks/1
 ### RENDER an individual park (that DOESN'T exists)
 GET http://localhost:3000/parks/99
 
-### GET POSTS from USERS for a park. 
+### GET POSTS from USERS for a park.  
 # Nb. HOW to isolate comments for a particular park
 GET http://localhost:3000/parks/1/comments/
 
@@ -92,4 +92,20 @@ Content-Type: application/json
     "signin": "alice",
     "password": "Apicvic"
   }
+}
+
+
+### POST a park request without a token
+POST http://localhost:3000/parks
+Content-Type: application/json
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 1,
+  "name": "Test park",
+  "cheese": "tasty cheese",
+  "wine": "red wine",
+  "latitude": -54.46675,
+  "longitude": 27.00203
 }
