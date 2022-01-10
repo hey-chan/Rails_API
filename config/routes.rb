@@ -23,10 +23,17 @@ Rails.application.routes.draw do
   ### TESTING: STILL WORKING PROGRESS
   get "/parks/:id/comments", to: "posts#index", as: "reviews"
 
-  # Create a comment for a park
+  get "/parks/:id/comments/:id", to: "posts#show", as: "review"
+
+  # CREATE a comment for a park
   post "/parks/:id/comments", to: "posts#create"
 
-  #
+  # UPDATE a comment for park
+  put "/parks/:id/comments", to: "posts#update"
+  patch "/parks/:id/comments", to: "posts#update"
+
+  # DELETE a comment for park
+  delete "/parks/:id/comments", to: "posts#destroy"
 
   ### Authentication routing
   # Login with a user

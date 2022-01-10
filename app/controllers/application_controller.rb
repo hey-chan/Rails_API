@@ -24,6 +24,6 @@ class ApplicationController < ActionController::API
   def extract_token_from_auth_headers
     # If auth header exist, we will get header,split it out and extract second part
     # If not, we can't call the split and array method
-    request.headers["Authorization"] && request.headers["Authorization"].split(" ")[1]
+    request.headers["Authorization"]&.split(" ")&.last
   end
 end
