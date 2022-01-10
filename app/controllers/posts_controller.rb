@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     render json: posts, include: { park: { only: :name }, user: { only: :username } }, status: 200
   end
 
+  ## RENDER ONE COMMENT (for testing purposes)
   def show
     render json: @post, include: { category: { only: :name }, feature: { only: :name } }
   end
@@ -25,11 +26,13 @@ class PostsController < ApplicationController
     render_post(post)
   end
 
+  ### ABILITY TO UPDATE A COMMENT
   def update
     @post.update(post_params)
     render_post(@post)
   end
 
+  ### ABILITY TO UPDATE A COMMENT
   def destroy
     attributes = @post.attributes
     @post.destroy
