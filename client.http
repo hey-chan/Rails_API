@@ -9,7 +9,7 @@ GET http://localhost:3000/features
 GET http://localhost:3000/parks
 
 ### RENDER an individual park (that exists)
-GET http://localhost:3000/parks/2
+GET http://localhost:3000/parks/1
 
 ### RENDER an individual park (that DOESN'T exists)
 GET http://localhost:3000/parks/99
@@ -17,6 +17,13 @@ GET http://localhost:3000/parks/99
 ### GET POSTS from USERS for a park. 
 # Nb. HOW to isolate comments for a particular park
 GET http://localhost:3000/parks/1/comments/
+
+### ANOTHER COMMENT FOR ANOTHER PARK
+GET http://localhost:3000/parks/3/comments/
+
+
+### TESTING COMMENTS
+GET http://localhost:3000/posts
 
 
 
