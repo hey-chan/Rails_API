@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2022_01_10_082120) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "admin", default: false
+    t.boolean "admin"
   end
 
   add_foreign_key "parks", "addresses"
