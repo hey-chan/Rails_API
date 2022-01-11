@@ -38,9 +38,9 @@ if Address.count == 0
 end
 
 if Park.count == 0
-  Park.create(category_id: 6, feature_id: 6, address_id: 1, name: "Royal Botanical Gardens", cheese: "Brie", wine: "Red wine", latitude: -37.8300822, longitude: 144.9754787)
-  Park.create(category_id: 2, feature_id: 9, address_id: 2, name: "Werribee Park", cheese: "Bocconcini", wine: "Merlot", latitude: -37.9400935, longitude: 144.6711291)
-  Park.create(category_id: 5, feature_id: 2, address_id: 3, name: "Footscray Park", cheese: "Bocconcini", wine: "Merlot", latitude: -377930638, longitude: 144.9049412)
+  Park.create(category_id: 6, feature_id: 6, address_id: 1, user_id: 1, name: "Royal Botanical Gardens", cheese: "Brie", wine: "Red wine", latitude: -37.8300822, longitude: 144.9754787)
+  Park.create(category_id: 2, feature_id: 9, address_id: 2, user_id: 1, name: "Werribee Park", cheese: "Bocconcini", wine: "Merlot", latitude: -37.9400935, longitude: 144.6711291)
+  Park.create(category_id: 5, feature_id: 2, address_id: 3, user_id: 1, name: "Footscray Park", cheese: "Bocconcini", wine: "Merlot", latitude: -377930638, longitude: 144.9049412)
   puts "Created parks"
 end
 
