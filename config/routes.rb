@@ -33,11 +33,11 @@ Rails.application.routes.draw do
   post "/parks/:park_id/comments", to: "posts#create"
 
   # UPDATE a comment for park
-  put "/parks/:park_id/comments", to: "posts#update"
-  patch "/parks/:park_id/comments", to: "posts#update"
+  put "/parks/comments/:id", to: "posts#update"
+  patch "/parks/comments/:id", to: "posts#update"
 
   # DELETE a comment for park
-  delete "/parks/:park_id/comments", to: "posts#destroy"
+  delete "/parks//comments/:id", to: "posts#destroy"
 
   ### Authentication routing
   # Login with a user
