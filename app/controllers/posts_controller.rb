@@ -88,7 +88,12 @@ class PostsController < ApplicationController
 
   def authorize
     # Permission for user to edit/update post
-    @post = Post.find(params[:id])
+    begin
+      @post = Post.find(params[:id])
+    rescue
+      # Will run if exception is raised
+      render json: { error: "Could not find this comment" }, status: 404
+    end
     render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.id == 1 || current_user.id == @post.user_id
       # current_user.id == @post.user_id || 
   end
