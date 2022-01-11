@@ -8,8 +8,9 @@ class PostsController < ApplicationController
   # THIS SHOWS ALL COMMENTS FOR EVERY PARK. WE DON'T WANT THIS
   # Ideally, we need this to render comments that are associated with that id
   def index
-    posts = Post.all.includes(:park, :user)
-    # if posts.id == @park
+    # posts = Post.all.includes(:park, :user)
+    posts = Post.includes(:park).where("park_id = #{params[:id]}", 'example').references(:park)
+    # if park_id == @park
     #   render json: posts, include: { park: { only: :name }, user: { only: :username } }, status: 200
     #   puts "This comment exists"
     # end
