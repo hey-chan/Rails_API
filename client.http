@@ -21,6 +21,9 @@ GET http://localhost:3000/parks/1/comments/
 ### ANOTHER COMMENT FOR ANOTHER PARK
 GET http://localhost:3000/parks/3/comments/
 
+### ANOTHER COMMENT FOR ANOTHER PARK
+GET http://localhost:3000/parks/2/comments/
+
 ### GET A COMMENT FROM A PARK
 GET http://localhost:3000/parks/1/comments/2
 
@@ -111,7 +114,7 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NTk5MDR9.OEXA-u6oW2KNXAOn6eGRwQorZsG5uchLFGY_joUcQKo"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NjIwNjh9.BRepsoDSTZ-x3ZmFCtp89jDLX0wh0Sh09JejXyBl_Pw"
 
 {
   "user_id": 1,
