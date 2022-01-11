@@ -26,7 +26,7 @@ GET http://localhost:3000/parks/2/comments/
 
 
 ### GET A COMMENT FROM A PARK
-GET http://localhost:3000/parks/1/comments/2
+GET http://localhost:3000/parks/comments/8
 
 ### TESTING COMMENTS
 # GET http://localhost:3000/posts
@@ -125,7 +125,7 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzU4NDd9.Hl2rOLpT9IIAzTvTEEWCny3A8xkGYA3EacRtjyX0P5Y"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4OTc3ODh9.iX-7Z6bST6sOQw5k6kMOtcM-LMisbCsrale0vujvHDg"
 
 {
   "user_id": 1,
@@ -137,7 +137,7 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzU4
 ### POST a comment with JWT (again)
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzY1MjN9.Pveny9g9RiJoPjt4k_wvVvj1bmydf7vHx_nFhp-QqsU"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4OTc3ODh9.iX-7Z6bST6sOQw5k6kMOtcM-LMisbCsrale0vujvHDg"
 
 {
   "user_id": 1,
