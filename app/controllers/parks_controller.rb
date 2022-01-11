@@ -1,5 +1,5 @@
 class ParksController < ApplicationController
-  before_action :set_park, only: [:show, :update, :describe]
+  before_action :set_park, only: [:show, :update, :destroy]
   before_action :authenticate, only: [:create, :update, :destroy]
   before_action :authorize, only: [:update, :destroy]
 

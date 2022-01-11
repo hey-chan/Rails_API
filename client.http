@@ -168,17 +168,62 @@ Content-Type: application/json
 # Association for user needed in order to create a Park
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzY1MjN9.Pveny9g9RiJoPjt4k_wvVvj1bmydf7vHx_nFhp-QqsU"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzkxMTN9.Vu0H7qUAWdGohDWDCUs6okg4YLUbEQ1V-NH0JDFfLjg"
 
 {
   "category_id": 6,
   "feature_id": 3,
   "address_id": 1,
-  "name": "Test Reserve",
-  "cheese": "Mozzarella cheese",
-  "wine": "A wine",
+  "name": "Test reserve, no.2",
+  "cheese": "DELETED",
+  "wine": "DELETED",
   "latitude": -54.46675,
   "longitude": 27.00203
 }
 
 
+### Update park with PUT with right authorisation (ie. admin)
+PUT http://localhost:3000/parks/6
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzkxMTN9.Vu0H7qUAWdGohDWDCUs6okg4YLUbEQ1V-NH0JDFfLjg"
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 3,
+  "name": "Reserved changed name",
+  "cheese": "A name that has changed",
+  "wine": "A wine has changed",
+  "latitude": -102.234823,
+  "longitude": 123.21314
+}
+
+### Updating without authorisation
+
+PUT http://localhost:3000/parks/6
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4ODExOTF9.-1QPvv9qUKOm7SoKHR_HfY-D_l0AXUWCxMHAXfnMt7U"
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 3,
+  "name": "Name change",
+  "cheese": "A name that has changed",
+  "wine": "A wine has changed",
+  "latitude": -102.234823,
+  "longitude": 123.21314
+}
+
+### DELETE a park with authorisation
+### NB: if a post is referencing a park that you are deleting, you will encounter InvalidForeignKey violation
+DELETE http://localhost:3000/parks/1
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4Nzk4NjB9.HlMy7Z_eDc77xotuSIDKGWmFQXzVcUCVI76U1yswEuE"
+
+### DELETE a park with no authorisation
+DELETE http://localhost:3000/parks/8
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE4Nzk3MzN9.ghOgMEeGO7K1WJhjOe4nQ1geOl24zEo70evshVIrFeg"
+
+### DELETE a park that does not exist
+DELETE http://localhost:3000/parks/100
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE4Nzk3MzN9.ghOgMEeGO7K1WJhjOe4nQ1geOl24zEo70evshVIrFeg
