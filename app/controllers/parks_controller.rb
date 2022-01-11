@@ -17,9 +17,8 @@ class ParksController < ApplicationController
   ### THESE CRUD FEATURES HAVE NOT BEEN TESTED
   def create
     if current_user.admin == true
-      park = current_user.parks.create(park_params)
+      park = current_user.parks.create(park_params
       render_park(park)
-      # render json: park, include: { category: { only: :name }, feature: { only: :name } }, status: 201
     else
       render json: { error: "You are not authorised to do that" }, status: 404
     end
