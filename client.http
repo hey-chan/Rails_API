@@ -24,11 +24,12 @@ GET http://localhost:3000/parks/3/comments/
 ### ANOTHER COMMENT FOR ANOTHER PARK
 GET http://localhost:3000/parks/2/comments/
 
+
 ### GET A COMMENT FROM A PARK
 GET http://localhost:3000/parks/1/comments/2
 
 ### TESTING COMMENTS
-GET http://localhost:3000/posts
+# GET http://localhost:3000/posts
 
 
 
@@ -77,7 +78,7 @@ Content-Type: application/json
   "password_confirmation": "test-password2"
 }
 
-### SIGN IN with EMAIL - updated
+### SIGN IN with ADMIN EMAIL - updated
 POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
@@ -88,7 +89,7 @@ Content-Type: application/json
   }
 }
 
-### SIGN IN with USERNAME - updated
+### SIGN IN with ADMIN USERNAME - updated
 POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
@@ -96,6 +97,16 @@ Content-Type: application/json
   "auth": {
     "signin": "admin",
     "password": "adminPic"
+  }
+}
+### SIGN IN with normal user 
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "auth": {
+    "signin": "bob",
+    "password": "Bpicvic"
   }
 }
 
@@ -114,24 +125,24 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NjIwNjh9.BRepsoDSTZ-x3ZmFCtp89jDLX0wh0Sh09JejXyBl_Pw"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzU4NDd9.Hl2rOLpT9IIAzTvTEEWCny3A8xkGYA3EacRtjyX0P5Y"
 
 {
   "user_id": 1,
   "park_id": 1,
-  "comment": "This will comment on a park",
+  "comment": "This is for park 1: Royal Botanical Garden",
   "rating": 5
 }
 
 ### POST a comment with JWT (again)
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4MjM1NDd9.fGW01xxdjqbqKn8XDlyk1uaWx0R9y_8bXiM3rG3AGAo"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzY1MjN9.Pveny9g9RiJoPjt4k_wvVvj1bmydf7vHx_nFhp-QqsU"
 
 {
   "user_id": 1,
-  "park_id": 1,
-  "comment": "This will make a comment again!",
+  "park_id": 3,
+  "comment": "This is for park 3: The Real Footscray Park!",
   "rating": 5
 }
 
@@ -157,15 +168,15 @@ Content-Type: application/json
 # Association for user needed in order to create a Park
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4MjQ3Nzl9.UULDkZQLv66Cu5Bcg7w2Fl5hYv4RgHI0dQoTbjkchZc"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzY1MjN9.Pveny9g9RiJoPjt4k_wvVvj1bmydf7vHx_nFhp-QqsU"
 
 {
-  "category_id": 1,
-  "feature_id": 2,
+  "category_id": 6,
+  "feature_id": 3,
   "address_id": 1,
-  "name": "Test park",
-  "cheese": "tasty cheese",
-  "wine": "red wine",
+  "name": "Test Reserve",
+  "cheese": "Mozzarella cheese",
+  "wine": "A wine",
   "latitude": -54.46675,
   "longitude": 27.00203
 }

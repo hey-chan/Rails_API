@@ -51,7 +51,7 @@ class ParksController < ApplicationController
   end
 
   def park_params
-    params.require(:park).permit(:name, :latitude, :longitude, :category_id, :feature_id, :address_id, :cheese, :wine)
+    params.require(:park).permit(:name, :latitude, :longitude, :category_id, :feature_id, :address_id, :user_id, :cheese, :wine)
   end
 
   def authorize
@@ -61,7 +61,7 @@ class ParksController < ApplicationController
 
   def render_park(park)
     unless park.errors.any?
-      render json: park, include: { park: { only: :name }, user: { only: :username } }, status: 201
+      render json: park, include: { category: { only: :name }, feature: { only: :name } }, status: 201
     else
       render json: { errors: park.errors.full_messages }, status: 422
     end
