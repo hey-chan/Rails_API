@@ -29,7 +29,7 @@ GET http://localhost:3000/parks/2/comments/
 GET http://localhost:3000/parks/1/comments/2
 
 ### TESTING COMMENTS
-GET http://localhost:3000/posts
+# GET http://localhost:3000/posts
 
 
 
@@ -125,7 +125,7 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4Njc2MDF9.2JhisItFDeQwoFw3mLsqRkJN6mKSXIrj3rlqdynLDfE"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzU4NDd9.Hl2rOLpT9IIAzTvTEEWCny3A8xkGYA3EacRtjyX0P5Y"
 
 {
   "user_id": 1,
@@ -168,15 +168,15 @@ Content-Type: application/json
 # Association for user needed in order to create a Park
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE4NzU0Nzd9.AG_k5AzFc4yaJlyVgVsPS_9MaugnHK0gieMvmhXUxc4"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzU4NDd9.Hl2rOLpT9IIAzTvTEEWCny3A8xkGYA3EacRtjyX0P5Y"
 
 {
-  "category_id": 2,
-  "feature_id": 4,
+  "category_id": 3,
+  "feature_id": 3,
   "address_id": 1,
-  "name": "Melbourne Park",
-  "cheese": "Smelly cheese",
-  "wine": "Juicy wine",
+  "name": "Derrimut Reserve",
+  "cheese": "Mozzarella cheese",
+  "wine": "A wine",
   "latitude": -54.46675,
   "longitude": 27.00203
 }

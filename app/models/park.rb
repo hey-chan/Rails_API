@@ -4,5 +4,5 @@ class Park < ApplicationRecord
   belongs_to :address
   has_many :post
   # ENSURE TESTS PASS
-  has_many :user
+  belongs_to :user
 end
