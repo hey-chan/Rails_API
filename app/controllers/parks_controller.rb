@@ -19,7 +19,7 @@ class ParksController < ApplicationController
     if current_user.admin == true
       park = current_user.parks.create(park_params)
       # render_park(park)
-      render json: park, include: { category: { only: :name }, feature: { only: :name } }, status: 201
+      render json: park, status: 201
     else
       render json: { error: "You are not authorised to do that" }, status: 404
     end
@@ -62,7 +62,7 @@ class ParksController < ApplicationController
 
   def render_park(park)
     unless park.errors.any?
-      render json: park, include: { park: { only: :name }, user: { only: :username } }, status: 201
+      render json: park, include: { category: { only: :name }, feature: { only: :name } }, status: 201
     else
       render json: { errors: park.errors.full_messages }, status: 422
     end

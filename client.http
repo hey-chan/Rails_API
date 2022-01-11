@@ -137,7 +137,7 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4Njc2
 ### POST a comment with JWT (again)
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4Njc2MDF9.2JhisItFDeQwoFw3mLsqRkJN6mKSXIrj3rlqdynLDfE"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE4NzU0Nzd9.AG_k5AzFc4yaJlyVgVsPS_9MaugnHK0gieMvmhXUxc4"
 
 {
   "user_id": 1,
@@ -168,15 +168,15 @@ Content-Type: application/json
 # Association for user needed in order to create a Park
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzQ1OTJ9.NzH1jFt6JmDfmMcg4pq5HeZI3F5o-B0h63F76NvY9y0"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE4NzU0Nzd9.AG_k5AzFc4yaJlyVgVsPS_9MaugnHK0gieMvmhXUxc4"
 
 {
   "category_id": 2,
   "feature_id": 4,
   "address_id": 1,
-  "name": "This park should not post",
-  "cheese": "cheese we wont be able to eat",
-  "wine": "red wine we can't drink",
+  "name": "Melbourne Park",
+  "cheese": "Smelly cheese",
+  "wine": "Juicy wine",
   "latitude": -54.46675,
   "longitude": 27.00203
 }
