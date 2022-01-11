@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   # FOR COMMENTS
-  before_action :set_park, only: [:index, :update, :describe]
+  # before_action :set_park, only: [:index, :update, :describe]
   before_action :authenticate, only: [:create, :update, :destroy]
   before_action :authorize, only: [:update, :destroy]
   # before_action :set_comment, only: [:show]
@@ -19,14 +19,13 @@ class PostsController < ApplicationController
 
   ## RENDER ONE COMMENT (for testing purposes)
   def show
-    # posts = Post.includes(:park).where("id = #{params[:id]}", 'example').references(:park)
     begin
       @post = Post.find(params[:id])
+      render json: @post, include: { park: { only: :name }, user: { only: :username } }, status: 200
     rescue
       # Will run if exception is raised
       render json: { error: "Could not find this comment" }, status: 404
     end
-    render json: @post, include: { park: { only: :name }, user: { only: :username } }, status: 200
   end
 
   def create
@@ -36,15 +35,27 @@ class PostsController < ApplicationController
 
   ### ABILITY TO UPDATE A COMMENT
   def update
-    @post.update(post_params)
-    render_post(@post)
+    # @post.update(post_params)
+    # render_post(@post)
+    begin
+      @post = Post.find(params[:id])
+      @post.update(post_params)
+      render json: @post, include: { park: { only: :name }, user: { only: :username } }, status: 200
+    rescue
+      # Will run if exception is raised
+      render json: { error: "Could not find this comment" }, status: 404
+    end
   end
 
-  ### ABILITY TO UPDATE A COMMENT
+  ### ABILITY TO DELETE A COMMENT
   def destroy
-    attributes = @post.attributes
-    @post.destroy
-    render json: attributes, status: 202
+    begin
+      @post = Post.find(params[:id])
+      @post.destroy
+    rescue
+      # Will run if exception is raised
+      render json: { error: "Could not find this comment" }, status: 404
+    end
   end
 
   # PSEUDO CODE
@@ -77,7 +88,9 @@ class PostsController < ApplicationController
 
   def authorize
     # Permission for user to edit/update post
-    render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.id == @post.user_id
+    @post = Post.find(params[:id])
+    render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.id == 1 || current_user.id == @post.user_id
+      # current_user.id == @post.user_id || 
   end
 
   def render_post(post)
