@@ -111,7 +111,7 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NTk5MDR9.OEXA-u6oW2KNXAOn6eGRwQorZsG5uchLFGY_joUcQKo"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NjEyMTJ9.vAD9FHmfIaI_P6NvOp8y7Ab-DmS6fTFTNVsmgHsRfAQ"
 
 {
   "user_id": 1,
