@@ -16,13 +16,17 @@ Rails.application.routes.draw do
   # POST a park (this will be restricted to ONLY admin)
   post "/parks", to: "parks#create"
 
+  # UPDATE a park (again restricted to admin)
+  put "/parks/:id", to: "parks#update"
+  patch "/parks/:id", to: "parks#update"
+
+  # DELETE a park (restricted to admin)
+  delete "/parks/:id", to: "parks#destroy"
+
   ### Comments connected to each part
-  # Nb. Needs to be worked on more
-  # Issue: connecting comments associated with the param id
-  # get "/parks/:id/comments", to: "posts#show", as: "comment"
-  ### TESTING: STILL WORKING PROGRESS
   get "/parks/:id/comments", to: "posts#index", as: "reviews"
 
+  ### STILL work in progress
   get "/parks/:id/comments/:id", to: "posts#show", as: "review"
 
   # CREATE a comment for a park
