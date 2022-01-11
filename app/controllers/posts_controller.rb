@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   # Ideally, we need this to render comments that are associated with that id
   def index
     # posts = Post.all.includes(:park, :user)
-    posts = Post.includes(:park).where("park_id = #{params[:id]}", 'example').references(:park)
+    posts = Post.includes(:park).where("park_id = #{params[:park_id]}", 'example').references(:park)
     # if park_id == @park
     #   render json: posts, include: { park: { only: :name }, user: { only: :username } }, status: 200
     #   puts "This comment exists"
@@ -19,7 +19,14 @@ class PostsController < ApplicationController
 
   ## RENDER ONE COMMENT (for testing purposes)
   def show
-    render json: @post, include: { category: { only: :name }, feature: { only: :name } }
+    # posts = Post.includes(:park).where("id = #{params[:id]}", 'example').references(:park)
+    begin
+      @post = Post.find(params[:id])
+    rescue
+      # Will run if exception is raised
+      render json: { error: "Could not find this comment" }, status: 404
+    end
+    render json: @post, include: { park: { only: :name }, user: { only: :username } }, status: 200
   end
 
   def create
@@ -48,7 +55,7 @@ class PostsController < ApplicationController
   def set_park
     begin
       # @post = Post.find(params[:park_id])
-      @park = Park.find(params[:id])
+      @park = Park.find(params[:park_id])
     rescue
       # Will run if exception is raised
       render json: { error: "Could not find this park" }, status: 404
@@ -65,7 +72,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:user_id, :park_id, :comment, :rating)
+    params.require(:post).permit(:id, :user_id, :park_id, :comment, :rating)
   end
 
   def authorize
