@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   ### SHOW all features
   get "/features", to: "features#index", as: "features"
 
+  ### SHOW all addresses
+  get "/addresses", to: "addresses#index", as: "addresses"
+
   ### PARKS stuff
   get "/parks", to: "parks#index", as: "parks"
 
