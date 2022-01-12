@@ -44,4 +44,6 @@ Rails.application.routes.draw do
   post "/auth/signin", to: "auth#signin", as: "signin"
   # Register a user
   post "/auth/signup", to: "auth#signup", as: "signup"
+  # Persisting user
+  post "/auth/signed_in_user", to: "auth#signed_in_user"
 end

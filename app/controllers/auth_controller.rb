@@ -26,10 +26,17 @@ class AuthController < ApplicationController
     end
   end
 
+  def signed_in_user
+    # persisting user checked against jwt
+    payload = JwtService.decode(auth_params[:jwt])
+    user = User.find(payload["user_id"])
+    render json: {username: user.username}
+  end
+
   private
 
   def auth_params
     # ALLOWED parameters
-    params.require(:auth).permit(:auth, :signin, :email, :password, :password_confirmation, :username)
+    params.require(:auth).permit(:auth, :signin, :email, :password, :password_confirmation, :username, :jwt)
   end
 end

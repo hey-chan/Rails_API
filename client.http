@@ -110,6 +110,14 @@ Content-Type: application/json
   }
 }
 
+# ### POST persistent signed in user with jwt
+# POST http://localhost:3000/auth/signed_in_user
+# Content-Type: application/json
+
+# {
+#   "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4OTc3ODh9.iX-7Z6bST6sOQw5k6kMOtcM-LMisbCsrale0vujvHDg"
+# }
+
 ### POST a comment without a JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
