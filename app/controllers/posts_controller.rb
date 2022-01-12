@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   # Ideally, we need this to render comments that are associated with that id
   def index
     # posts = Post.all.includes(:park, :user)
-    posts = Post.includes(:park).where("park_id = #{params[:park_id]}", 'example').references(:park)
+    posts = Post.includes(:park).where("park_id = #{params[:park_id]}", "example").references(:park)
     # if park_id == @park
     #   render json: posts, include: { park: { only: :name }, user: { only: :username } }, status: 200
     #   puts "This comment exists"
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.create(post_params)
+    post = current_user.posts.create(post_params.to_h.merge(park_id: params[:park_id]))
     render_post(post)
   end
 
@@ -95,7 +95,7 @@ class PostsController < ApplicationController
       render json: { error: "Could not find this comment" }, status: 404
     end
     render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.id == 1 || current_user.id == @post.user_id
-      # current_user.id == @post.user_id || 
+    # current_user.id == @post.user_id ||
   end
 
   def render_post(post)
