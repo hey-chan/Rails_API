@@ -11,17 +11,17 @@ Rails.application.routes.draw do
   get "/parks", to: "parks#index", as: "parks"
 
   # Displays one park based on park.id
-  get "/parks/:park_id", to: "parks#show", as: "park"
+  get "/parks/:id", to: "parks#show", as: "park"
 
   # POST a park (this will be restricted to ONLY admin)
   post "/parks", to: "parks#create"
 
   # UPDATE a park (again restricted to admin)
-  put "/parks/:park_id", to: "parks#update"
-  patch "/parks/:park_id", to: "parks#update"
+  put "/parks/:id", to: "parks#update"
+  patch "/parks/:id", to: "parks#update"
 
   # DELETE a park (restricted to admin)
-  delete "/parks/:park_id", to: "parks#destroy"
+  delete "/parks/:id", to: "parks#destroy"
 
   ### Comments connected to each part
   get "/parks/:park_id/comments", to: "posts#index", as: "reviews"
@@ -33,17 +33,18 @@ Rails.application.routes.draw do
   post "/parks/:park_id/comments", to: "posts#create"
 
   # UPDATE a comment for park
-  put "/parks/:park_id/comments", to: "posts#update"
-  patch "/parks/:park_id/comments", to: "posts#update"
+  put "/parks/comments/:id", to: "posts#update"
+  patch "/parks/comments/:id", to: "posts#update"
 
   # DELETE a comment for park
-  delete "/parks/:park_id/comments", to: "posts#destroy"
+  delete "/parks//comments/:id", to: "posts#destroy"
 
   ### Authentication routing
   # Login with a user
   post "/auth/signin", to: "auth#signin", as: "signin"
   # Register a user
   post "/auth/signup", to: "auth#signup", as: "signup"
-  # Persisting user
+
+  # Persisten data
   post "/auth/signed_in_user", to: "auth#signed_in_user"
 end

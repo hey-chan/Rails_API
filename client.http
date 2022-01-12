@@ -4,56 +4,9 @@ GET http://localhost:3000/categories
 ### RENDER FEATURES
 GET http://localhost:3000/features
 
-
-### RENDER ALL PARKS LIST
-GET http://localhost:3000/parks
-
-### RENDER an individual park (that exists)
-GET http://localhost:3000/parks/1
-
-### RENDER an individual park (that DOESN'T exists)
-GET http://localhost:3000/parks/99
-
-### GET POSTS from USERS for a park.  
-# Nb. HOW to isolate comments for a particular park
-GET http://localhost:3000/parks/1/comments/
-
-### ANOTHER COMMENT FOR ANOTHER PARK
-GET http://localhost:3000/parks/3/comments/
-
-### ANOTHER COMMENT FOR ANOTHER PARK
-GET http://localhost:3000/parks/2/comments/
-
-
-### GET A COMMENT FROM A PARK
-GET http://localhost:3000/parks/comments/8
-
-### TESTING COMMENTS
-# GET http://localhost:3000/posts
-
-
-
-### LOGIN with correct details - no longer works: "email" replaced with "login"
-# POST http://localhost:3000/auth/signin
-# Content-Type: application/json
-
-# {
-#   "auth": {
-#     "email": "alice@picvic.com.au",
-#     "password": "Apicvic"
-#   }
-# }
-
-# ### LOGIN with INCORRECT details - no longer works: "email" replaced with "login"
-# POST http://localhost:3000/auth/signin
-# Content-Type: application/json
-
-# {
-#   "auth": {
-#     "email": "alice@picvic.com.au",
-#     "password": "nottherightpassword"
-#   }
-# }
+##############################################
+### USERS
+##############################################
 
 ### REGISTERING a new user
 # If this was sent again, request will fail with code 422
@@ -99,7 +52,8 @@ Content-Type: application/json
     "password": "adminPic"
   }
 }
-### SIGN IN with normal user 
+
+### SIGN IN with normal user (no admin priviledge)
 POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
@@ -110,6 +64,7 @@ Content-Type: application/json
   }
 }
 
+<<<<<<< HEAD
 # ### POST persistent signed in user with jwt
 # POST http://localhost:3000/auth/signed_in_user
 # Content-Type: application/json
@@ -117,6 +72,160 @@ Content-Type: application/json
 # {
 #   "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4OTc3ODh9.iX-7Z6bST6sOQw5k6kMOtcM-LMisbCsrale0vujvHDg"
 # }
+
+### POST a comment without a JWT
+POST http://localhost:3000/parks/1/comments
+=======
+### SIGN IN with newly created test user (no admin)
+POST http://localhost:3000/auth/signin
+>>>>>>> 2e377995e9690cd325ff12da5a21fafb500f56cd
+Content-Type: application/json
+
+{
+  "auth": {
+    "signin": "test-user1",
+    "password": "test-password1"
+  }
+}
+
+### POST persistent signed in user with jwt
+POST http://localhost:3000/auth/signed_in_user
+Content-Type: application/json
+
+{
+  "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTM2MTd9.gSTWiRT4Ai40Vep0_kB9y72HXyj8Yanq2FBRaTMsm-o"
+} 
+
+
+##############################################
+### PARKS
+##############################################
+### RENDER ALL PARKS LIST; GET
+GET http://localhost:3000/parks
+
+### RENDER an individual park (that exists)
+GET http://localhost:3000/parks/4
+
+### RENDER an individual park (that DOESN'T exists)
+GET http://localhost:3000/parks/99
+
+
+### CREATE A PARK
+### POST a park request without a token or admin
+POST http://localhost:3000/parks
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3Njd9.sAoL5DbYuNDg_3IzDKg8wWPvDqRrLA1cZhAXpCfY19c"
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 1,
+  "name": "This park should be able to post by Bob",
+  "cheese": "cheese we wont be able to eat",
+  "wine": "red wine we can't drink",
+  "latitude": -54.46675,
+  "longitude": 27.00203
+}
+
+### POST with token and admin privilege
+# NB: jwt will need to be updated each time after 1hr
+POST http://localhost:3000/parks
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+{
+  "category_id": 6,
+  "feature_id": 3,
+  "address_id": 1,
+  "name": "Test reserve, no.3 by Admij",
+  "cheese": "Admin wine",
+  "wine": "Admin test wine",
+  "latitude": -54.46675,
+  "longitude": 27.00203
+}
+
+
+### UPDATE PARK
+### Update park with PUT with right authorisation (ie. admin)
+PUT http://localhost:3000/parks/7
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 3,
+  "name": "Reserved changed name again by Admin",
+  "cheese": "A name that has changed",
+  "wine": "A wine has changed",
+  "latitude": -102.234823,
+  "longitude": 123.21314
+}
+
+### Updating without authorisation
+PUT http://localhost:3000/parks/1
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3Njd9.sAoL5DbYuNDg_3IzDKg8wWPvDqRrLA1cZhAXpCfY19c"
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 3,
+  "name": "Name should not be able to be change by normal user",
+  "cheese": "A name that has changed",
+  "wine": "A wine has changed",
+  "latitude": -102.234823,
+  "longitude": 123.21314
+}
+
+
+### DELETE a park with authorisation
+### NB: if a post is referencing a park that you are deleting, you will encounter InvalidForeignKey violation
+DELETE http://localhost:3000/parks/6
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+### DELETE a park with no authorisation or admin
+DELETE http://localhost:3000/parks/6
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTI5NjJ9.1sjyJALClMx7MRabi5tJnk9uoYyIsSYcn_7U557ohTE"
+
+### DELETE a park that does not exist
+DELETE http://localhost:3000/parks/100
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+
+
+
+##############################################
+### COMMENTS/POSTS
+##############################################
+### GET POSTS from USERS associated with park
+GET http://localhost:3000/parks/1/comments/
+
+### ANOTHER COMMENT FOR ANOTHER PARK
+GET http://localhost:3000/parks/2/comments/
+
+### ANOTHER COMMENT FOR ANOTHER PARK
+GET http://localhost:3000/parks/3/comments/
+
+### SINGLE COMMENT
+GET http://localhost:3000/parks/comments/5
+
+### GET A COMMENT FROM A PARK THAT DOES NOT EXIST
+GET http://localhost:3000/parks/comments/100
+
+
+
+### DELETE A COMMENT: with right authorisation
+DELETE http://localhost:3000/parks/comments/5
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+### DELETE A COMMENT: without right authorisation or user
+DELETE http://localhost:3000/parks/comments/5
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTMxNTl9.2djQQpRJDmgXFYQgBz0Wl-3t3n_jOdBCfRU0P3hHZ8Y"
+
+
 
 ### POST a comment without a JWT
 POST http://localhost:3000/parks/1/comments
@@ -133,105 +242,35 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4OTc3ODh9.iX-7Z6bST6sOQw5k6kMOtcM-LMisbCsrale0vujvHDg"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTE4NDF9.CQ05OD-WyMZ6TMRVWssCri-MapewYp0pu0IB5uAG3OU"
 
 {
-  "user_id": 1,
   "park_id": 1,
-  "comment": "This is for park 1: Royal Botanical Garden",
+  "comment": "Bob thinks this park is rad",
   "rating": 5
 }
 
 ### POST a comment with JWT (again)
-POST http://localhost:3000/parks/1/comments
+POST http://localhost:3000/parks/3/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4OTc3ODh9.iX-7Z6bST6sOQw5k6kMOtcM-LMisbCsrale0vujvHDg"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTE5MjV9.Z4sCIlK2cJKBU6c8iVXb0w6b5Vef_a52rF_a5puV658"
 
 {
-  "user_id": 1,
   "park_id": 3,
-  "comment": "This is for park 3: The Real Footscray Park!",
+  "comment": "test-user1 thinks this is neat",
   "rating": 5
 }
 
-
-
-### POST a park request without a token
-POST http://localhost:3000/parks
+###UPDATE A COMMENT : not
+PATCH http://localhost:3000/parks/comments/7
 Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTMxNTl9.2djQQpRJDmgXFYQgBz0Wl-3t3n_jOdBCfRU0P3hHZ8Y"
 
 {
-  "category_id": 1,
-  "feature_id": 2,
-  "address_id": 1,
-  "name": "This park should not post",
-  "cheese": "cheese we wont be able to eat",
-  "wine": "red wine we can't drink",
-  "latitude": -54.46675,
-  "longitude": 27.00203
-}
-
-### POST with token and admin privilege
-# NB: jwt will need to be updated each time after 1hr
-# Association for user needed in order to create a Park
-POST http://localhost:3000/parks
-Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzkxMTN9.Vu0H7qUAWdGohDWDCUs6okg4YLUbEQ1V-NH0JDFfLjg"
-
-{
-  "category_id": 6,
-  "feature_id": 3,
-  "address_id": 1,
-  "name": "Test reserve, no.2",
-  "cheese": "DELETED",
-  "wine": "DELETED",
-  "latitude": -54.46675,
-  "longitude": 27.00203
+  "comment": "Comment has changed1",
+  "rating": 2
 }
 
 
-### Update park with PUT with right authorisation (ie. admin)
-PUT http://localhost:3000/parks/6
-Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4NzkxMTN9.Vu0H7qUAWdGohDWDCUs6okg4YLUbEQ1V-NH0JDFfLjg"
 
-{
-  "category_id": 1,
-  "feature_id": 2,
-  "address_id": 3,
-  "name": "Reserved changed name",
-  "cheese": "A name that has changed",
-  "wine": "A wine has changed",
-  "latitude": -102.234823,
-  "longitude": 123.21314
-}
 
-### Updating without authorisation
-
-PUT http://localhost:3000/parks/6
-Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4ODExOTF9.-1QPvv9qUKOm7SoKHR_HfY-D_l0AXUWCxMHAXfnMt7U"
-
-{
-  "category_id": 1,
-  "feature_id": 2,
-  "address_id": 3,
-  "name": "Name change",
-  "cheese": "A name that has changed",
-  "wine": "A wine has changed",
-  "latitude": -102.234823,
-  "longitude": 123.21314
-}
-
-### DELETE a park with authorisation
-### NB: if a post is referencing a park that you are deleting, you will encounter InvalidForeignKey violation
-DELETE http://localhost:3000/parks/1
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE4Nzk4NjB9.HlMy7Z_eDc77xotuSIDKGWmFQXzVcUCVI76U1yswEuE"
-
-### DELETE a park with no authorisation
-DELETE http://localhost:3000/parks/8
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE4Nzk3MzN9.ghOgMEeGO7K1WJhjOe4nQ1geOl24zEo70evshVIrFeg"
-
-### DELETE a park that does not exist
-DELETE http://localhost:3000/parks/100
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE4Nzk3MzN9.ghOgMEeGO7K1WJhjOe4nQ1geOl24zEo70evshVIrFeg

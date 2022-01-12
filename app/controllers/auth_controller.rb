@@ -28,9 +28,9 @@ class AuthController < ApplicationController
 
   def signed_in_user
     # persisting user checked against jwt
-    payload = JwtService.decode(auth_params[:jwt])
+    payload = JwtServices.decode(auth_params[:jwt])
     user = User.find(payload["user_id"])
-    render json: {username: user.username}
+    render json: { username: user.username }
   end
 
   private
