@@ -4,6 +4,9 @@ GET http://localhost:3000/categories
 ### RENDER FEATURES
 GET http://localhost:3000/features
 
+### RENDER ADDRESSES
+GET http://localhost:3000/addresses
+
 ##############################################
 ### USERS
 ##############################################
@@ -91,7 +94,7 @@ Content-Type: application/json
 GET http://localhost:3000/parks
 
 ### RENDER an individual park (that exists)
-GET http://localhost:3000/parks/4
+GET http://localhost:3000/parks/2
 
 ### RENDER an individual park (that DOESN'T exists)
 GET http://localhost:3000/parks/99
@@ -195,7 +198,7 @@ GET http://localhost:3000/parks/2/comments/
 GET http://localhost:3000/parks/3/comments/
 
 ### SINGLE COMMENT
-GET http://localhost:3000/parks/comments/5
+GET http://localhost:3000/parks/comments/2
 
 ### GET A COMMENT FROM A PARK THAT DOES NOT EXIST
 GET http://localhost:3000/parks/comments/100

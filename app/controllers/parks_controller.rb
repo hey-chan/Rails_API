@@ -6,12 +6,13 @@ class ParksController < ApplicationController
   # Show all parks available
   def index
     parks = Park.all.includes(:category, :feature)
-    render json: parks, include: { category: { only: :name }, feature: { only: :name } }, status: 200
+    render json: parks, include: { category: { only: :name }, feature: { only: :name }, address: { only: [:number, :street, :suburb, :postcode] } }, status: 200
+    # render json: parks, include: ["category", "feature", "address"], status: 200
   end
 
   # Show individual Park, based on params[:id]
   def show
-    render json: @park, include: { category: { only: :name }, feature: { only: :name } }, status: 200
+    render json: @park, include: { category: { only: :name }, feature: { only: :name }, address: { only: [:number, :street, :suburb, :postcode] } }, status: 200
   end
 
   ### THESE CRUD FEATURES HAVE NOT BEEN TESTED
