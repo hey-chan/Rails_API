@@ -1,0 +1,266 @@
+### RENDER CATEGORIES
+GET http://localhost:3000/categories
+
+### RENDER FEATURES
+GET http://localhost:3000/features
+
+### RENDER ADDRESSES
+GET http://localhost:3000/addresses
+
+##############################################
+### USERS
+##############################################
+
+### REGISTERING a new user
+# If this was sent again, request will fail with code 422
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "test@testing.com",
+  "username": "test-user1",
+  "password": "test-password1",
+  "password_confirmation": "test-password1"
+}
+
+### ATTEMPTING to register new user with "@" in username
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "test1@testing.com",
+  "username": "test@user1",
+  "password": "test-password2",
+  "password_confirmation": "test-password2"
+}
+
+### SIGN IN with ADMIN EMAIL - updated
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "auth": {
+    "signin": "admin@picvic.com.au",
+    "password": "adminPic"
+  }
+}
+
+### SIGN IN with ADMIN USERNAME - updated
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "auth": {
+    "signin": "admin",
+    "password": "adminPic"
+  }
+}
+
+### SIGN IN with normal user (no admin priviledge)
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "auth": {
+    "signin": "bob",
+    "password": "Bpicvic"
+  }
+}
+
+### SIGN IN with newly created test user (no admin)
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "auth": {
+    "signin": "test-user1",
+    "password": "test-password1"
+  }
+}
+
+### POST persistent signed in user with jwt
+POST http://localhost:3000/auth/signed_in_user
+Content-Type: application/json
+
+{
+  "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTM2MTd9.gSTWiRT4Ai40Vep0_kB9y72HXyj8Yanq2FBRaTMsm-o"
+} 
+
+
+##############################################
+### PARKS
+##############################################
+### RENDER ALL PARKS LIST; GET
+GET http://localhost:3000/parks
+
+### RENDER an individual park (that exists)
+GET http://localhost:3000/parks/2
+
+### RENDER an individual park (that DOESN'T exists)
+GET http://localhost:3000/parks/99
+
+
+### CREATE A PARK
+### POST a park request without a token or admin
+POST http://localhost:3000/parks
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3Njd9.sAoL5DbYuNDg_3IzDKg8wWPvDqRrLA1cZhAXpCfY19c"
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 1,
+  "name": "This park should be able to post by Bob",
+  "cheese": "cheese we wont be able to eat",
+  "wine": "red wine we can't drink",
+  "latitude": -54.46675,
+  "longitude": 27.00203
+}
+
+### POST with token and admin privilege
+# NB: jwt will need to be updated each time after 1hr
+POST http://localhost:3000/parks
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+{
+  "category_id": 6,
+  "feature_id": 3,
+  "address_id": 1,
+  "name": "Test reserve, no.3 by Admij",
+  "cheese": "Admin wine",
+  "wine": "Admin test wine",
+  "latitude": -54.46675,
+  "longitude": 27.00203
+}
+
+
+### UPDATE PARK
+### Update park with PUT with right authorisation (ie. admin)
+PUT http://localhost:3000/parks/7
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 3,
+  "name": "Reserved changed name again by Admin",
+  "cheese": "A name that has changed",
+  "wine": "A wine has changed",
+  "latitude": -102.234823,
+  "longitude": 123.21314
+}
+
+### Updating without authorisation
+PUT http://localhost:3000/parks/1
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3Njd9.sAoL5DbYuNDg_3IzDKg8wWPvDqRrLA1cZhAXpCfY19c"
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 3,
+  "name": "Name should not be able to be change by normal user",
+  "cheese": "A name that has changed",
+  "wine": "A wine has changed",
+  "latitude": -102.234823,
+  "longitude": 123.21314
+}
+
+
+### DELETE a park with authorisation
+### NB: if a post is referencing a park that you are deleting, you will encounter InvalidForeignKey violation
+DELETE http://localhost:3000/parks/6
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+### DELETE a park with no authorisation or admin
+DELETE http://localhost:3000/parks/6
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTI5NjJ9.1sjyJALClMx7MRabi5tJnk9uoYyIsSYcn_7U557ohTE"
+
+### DELETE a park that does not exist
+DELETE http://localhost:3000/parks/100
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+
+
+
+##############################################
+### COMMENTS/POSTS
+##############################################
+### GET POSTS from USERS associated with park
+GET http://localhost:3000/parks/1/comments/
+
+### ANOTHER COMMENT FOR ANOTHER PARK
+GET http://localhost:3000/parks/2/comments/
+
+### ANOTHER COMMENT FOR ANOTHER PARK
+GET http://localhost:3000/parks/3/comments/
+
+### SINGLE COMMENT
+GET http://localhost:3000/parks/comments/2
+
+### GET A COMMENT FROM A PARK THAT DOES NOT EXIST
+GET http://localhost:3000/parks/comments/100
+
+
+
+### DELETE A COMMENT: with right authorisation
+DELETE http://localhost:3000/parks/comments/5
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+
+### DELETE A COMMENT: without right authorisation or user
+DELETE http://localhost:3000/parks/comments/5
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTMxNTl9.2djQQpRJDmgXFYQgBz0Wl-3t3n_jOdBCfRU0P3hHZ8Y"
+
+
+
+### POST a comment without a JWT
+POST http://localhost:3000/parks/1/comments
+Content-Type: application/json
+
+{ 
+  "user_id": 1,
+  "park_id": 1,
+  "comment": "This will not comment",
+  "rating": 5
+}
+
+
+### POST a comment with JWT
+POST http://localhost:3000/parks/1/comments
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTE4NDF9.CQ05OD-WyMZ6TMRVWssCri-MapewYp0pu0IB5uAG3OU"
+
+{
+  "park_id": 1,
+  "comment": "Bob thinks this park is rad",
+  "rating": 5
+}
+
+### POST a comment with JWT (again)
+POST http://localhost:3000/parks/3/comments
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTE5MjV9.Z4sCIlK2cJKBU6c8iVXb0w6b5Vef_a52rF_a5puV658"
+
+{
+  "park_id": 3,
+  "comment": "test-user1 thinks this is neat",
+  "rating": 5
+}
+
+###UPDATE A COMMENT : not
+PATCH http://localhost:3000/parks/comments/7
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTMxNTl9.2djQQpRJDmgXFYQgBz0Wl-3t3n_jOdBCfRU0P3hHZ8Y"
+
+{
+  "comment": "Comment has changed1",
+  "rating": 2
+}
+
+
+
+
