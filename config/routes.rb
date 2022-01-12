@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   patch "/parks/comments/:id", to: "posts#update"
 
   # DELETE a comment for park
-  delete "/parks//comments/:id", to: "posts#destroy"
+  delete "/parks/comments/:id", to: "posts#destroy"
 
   ### Authentication routing
   # Login with a user

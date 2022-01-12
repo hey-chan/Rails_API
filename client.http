@@ -83,7 +83,7 @@ POST http://localhost:3000/auth/signed_in_user
 Content-Type: application/json
 
 {
-  "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTM2MTd9.gSTWiRT4Ai40Vep0_kB9y72HXyj8Yanq2FBRaTMsm-o"
+  "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3NTh9.QtqX_W2e2U23ishBay7Jr3uh11g7-EuFLGW5_AlvA_g"
 } 
 
 
@@ -104,7 +104,7 @@ GET http://localhost:3000/parks/99
 ### POST a park request without a token or admin
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3Njd9.sAoL5DbYuNDg_3IzDKg8wWPvDqRrLA1cZhAXpCfY19c"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NsadE5NTI3Njd9.sAoL5DbYuNDg_3IzDKg8wWPvDqRrLA1cZhAXpCfY19c"
 
 {
   "category_id": 1,
@@ -121,15 +121,15 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3
 # NB: jwt will need to be updated each time after 1hr
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4Mzh9.KQbPDid-KUSkMZaWYzghG_qWyyTsw-lFCA307dqnLSM"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3NTh9.QtqX_W2e2U23ishBay7Jr3uh11g7-EuFLGW5_AlvA_g"
 
 {
-  "category_id": 6,
-  "feature_id": 3,
-  "address_id": 1,
-  "name": "Test reserve, no.3 by Admij",
-  "cheese": "Admin wine",
-  "wine": "Admin test wine",
+  "category_id": 2,
+  "feature_id": 4,
+  "address_id": 3,
+  "name": "Eastern Beach",
+  "cheese": "Geelong cheese",
+  "wine": "Geelong wine",
   "latitude": -54.46675,
   "longitude": 27.00203
 }
@@ -137,19 +137,19 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4
 
 ### UPDATE PARK
 ### Update park with PUT with right authorisation (ie. admin)
-PUT http://localhost:3000/parks/7
+PUT http://localhost:3000/parks/9
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3NTh9.QtqX_W2e2U23ishBay7Jr3uh11g7-EuFLGW5_AlvA_g"
 
 {
   "category_id": 1,
   "feature_id": 2,
   "address_id": 3,
-  "name": "Reserved changed name again by Admin",
-  "cheese": "A name that has changed",
-  "wine": "A wine has changed",
-  "latitude": -102.234823,
-  "longitude": 123.21314
+  "name": "REDACTED",
+  "cheese": "REDACTED",
+  "wine": "REDACTED",
+  "latitude": 0,
+  "longitude": 0
 }
 
 ### Updating without authorisation
@@ -171,8 +171,8 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3
 
 ### DELETE a park with authorisation
 ### NB: if a post is referencing a park that you are deleting, you will encounter InvalidForeignKey violation
-DELETE http://localhost:3000/parks/6
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+DELETE http://localhost:3000/parks/9
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3NTh9.QtqX_W2e2U23ishBay7Jr3uh11g7-EuFLGW5_AlvA_g"
 
 ### DELETE a park with no authorisation or admin
 DELETE http://localhost:3000/parks/6
@@ -206,14 +206,14 @@ GET http://localhost:3000/parks/comments/100
 
 
 ### DELETE A COMMENT: with right authorisation
-DELETE http://localhost:3000/parks/comments/5
+DELETE http://localhost:3000/parks/comments/18
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzYyNzN9.1XmTG-SibpEZXRD1NY1zeYQqcm-DNJy97_UCQthQeFM"
 
 ### DELETE A COMMENT: without right authorisation or user
-DELETE http://localhost:3000/parks/comments/5
+DELETE http://localhost:3000/parks/comments/17
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTMxNTl9.2djQQpRJDmgXFYQgBz0Wl-3t3n_jOdBCfRU0P3hHZ8Y"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NzY0NDF9.XPSsF6AC49OHOpoVMu6Rb8lVc7GtAyQoAqg4_OSF8nQ"
 
 
 
@@ -232,7 +232,7 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4Mzh9.KQbPDid-KUSkMZaWYzghG_qWyyTsw-lFCA307dqnLSM"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NzYxMTl9.Y7LdV3EfHmbvznE20y_sHK5zh8S_-ECqSFeG-AeVVu0"
 
 {
   "comment": "Bob thinks this park is rad",
@@ -249,13 +249,13 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4
   "rating": 5
 }
 
-###UPDATE A COMMENT : not
-PATCH http://localhost:3000/parks/comments/7
+###UPDATE A COMMENT
+PATCH http://localhost:3000/parks/comments/15
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTMxNTl9.2djQQpRJDmgXFYQgBz0Wl-3t3n_jOdBCfRU0P3hHZ8Y"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzY4MzJ9.b_LJEWf8iN32rUDmeUSQ_lHXTUKe19eyyqOoU1sE_kw"
 
 {
-  "comment": "Comment has changed1",
+  "comment": "Comment is inappropriate",
   "rating": 2
 }
 
