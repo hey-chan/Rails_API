@@ -1,7 +1,7 @@
 class ParksController < ApplicationController
   before_action :set_park, only: [:show, :update, :destroy]
   before_action :authenticate, only: [:create, :update, :destroy]
-  before_action :authorize, only: [:update, :destroy]
+  before_action :authorize, only: [:create, :update, :destroy]
 
   # Show all parks available
   def index
@@ -16,27 +16,19 @@ class ParksController < ApplicationController
 
   ### THESE CRUD FEATURES HAVE NOT BEEN TESTED
   def create
-    if current_user.admin == true
-      park = current_user.parks.create(park_params)
-      render_park(park)
-    else
-      render json: { error: "You are not authorised to do that" }, status: 404
-    end
+    park = current_user.parks.create(park_params)
+    render_park(park)
   end
 
   def update
-    if current_user.admin == true
-      @park.update(park_params)
-      render_park(@park)
-    end
+    @park.update(park_params)
+    render_park(@park)
   end
 
   def destroy
-    if current_user.admin == true
-      attributes = @park.attributes
-      @park.destroy
-      render json: attributes, status: 202
-    end
+    attributes = @park.attributes
+    @park.destroy
+    render json: attributes, status: 202
   end
 
   private
@@ -56,7 +48,7 @@ class ParksController < ApplicationController
 
   def authorize
     # Permission for user to edit/update post
-    render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.admin == true
+    render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.id == 1
   end
 
   def render_park(park)
