@@ -44,7 +44,7 @@ class ParksController < ApplicationController
   end
 
   def park_params
-    params.require(:park).permit(:name, :latitude, :longitude, :category_id, :feature_id, :address_id, :user_id, :cheese, :wine)
+    params.require(:park).permit(:name, :latitude, :longitude, :category_id, :feature_id, :address_id, :user_id, :cheese, :wine, :picture)
   end
 
   def authorize

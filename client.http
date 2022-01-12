@@ -121,7 +121,7 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NsadE5NT
 # NB: jwt will need to be updated each time after 1hr
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3NTh9.QtqX_W2e2U23ishBay7Jr3uh11g7-EuFLGW5_AlvA_g"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5ODU1ODh9.DgGgbJx_3H3kdqOR00TmXRLarSepi-kIXWnD5JrDvDU"
 
 {
   "category_id": 2,
@@ -131,7 +131,7 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3
   "cheese": "Geelong cheese",
   "wine": "Geelong wine",
   "latitude": -54.46675,
-  "longitude": 27.00203
+  "longitude": 27.00203,
 }
 
 

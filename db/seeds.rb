@@ -52,3 +52,5 @@ if Post.count == 0
   Post.create(user_id: 2, park_id: 2, comment: "This is a park that exists", rating: 2)
   puts "Created post for park"
 end
+
+Park.first.picture.attach(io: File.open(File.join(Rails.root, "app/assets/images/testpic.jpeg")), filename: 'testpic.jpeg')
