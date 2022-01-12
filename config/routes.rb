@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   ### Comments connected to each part
   get "/parks/:park_id/comments", to: "posts#index", as: "reviews"
 
-  ### STILL work in progress
+  ### DISPLAYS a single comment
   get "/parks/comments/:id", to: "posts#show", as: "review"
 
   # CREATE a comment for a park
