@@ -94,7 +94,7 @@ Content-Type: application/json
 GET http://localhost:3000/parks
 
 ### RENDER an individual park (that exists)
-GET http://localhost:3000/parks/2
+GET http://localhost:3000/parks/4
 
 ### RENDER an individual park (that DOESN'T exists)
 GET http://localhost:3000/parks/99
@@ -121,7 +121,7 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3
 # NB: jwt will need to be updated each time after 1hr
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4Mzh9.KQbPDid-KUSkMZaWYzghG_qWyyTsw-lFCA307dqnLSM"
 
 {
   "category_id": 6,
@@ -232,21 +232,19 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTE4NDF9.CQ05OD-WyMZ6TMRVWssCri-MapewYp0pu0IB5uAG3OU"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4Mzh9.KQbPDid-KUSkMZaWYzghG_qWyyTsw-lFCA307dqnLSM"
 
 {
-  "park_id": 1,
   "comment": "Bob thinks this park is rad",
   "rating": 5
 }
 
 ### POST a comment with JWT (again)
-POST http://localhost:3000/parks/3/comments
+POST http://localhost:3000/parks/4/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE5NTE5MjV9.Z4sCIlK2cJKBU6c8iVXb0w6b5Vef_a52rF_a5puV658"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4Mzh9.KQbPDid-KUSkMZaWYzghG_qWyyTsw-lFCA307dqnLSM"
 
 {
-  "park_id": 3,
   "comment": "test-user1 thinks this is neat",
   "rating": 5
 }

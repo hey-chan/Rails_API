@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   # FOR COMMENTS
-  # before_action :set_park, only: [:index, :update, :describe]
+  before_action :set_park, only: [:index, :update, :describe]
   before_action :authenticate, only: [:create, :update, :destroy]
   before_action :authorize, only: [:update, :destroy]
   # before_action :set_comment, only: [:show]
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.create(post_params)
+    post = current_user.posts.create(post_params.to_h.merge(park_id: params[:park_id]))
     render_post(post)
   end
 
