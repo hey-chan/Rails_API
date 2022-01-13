@@ -121,35 +121,35 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NsadE5NT
 # NB: jwt will need to be updated each time after 1hr
 POST http://localhost:3000/parks
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5ODU1ODh9.DgGgbJx_3H3kdqOR00TmXRLarSepi-kIXWnD5JrDvDU"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIwMzg4MjN9.CnHmMab7g_Rcv8746Fn4kp9Mxm21BxT4-NjkyeNHROk"
 
 {
-  "category_id": 2,
-  "feature_id": 4,
-  "address_id": 3,
-  "name": "Eastern Beach",
-  "cheese": "Geelong cheese",
-  "wine": "Geelong wine",
-  "latitude": -54.46675,
-  "longitude": 27.00203,
+  "category_id": 1,
+  "feature_id": 1,
+  "address_id": 1,
+  "name": "Birrarung marr",
+  "cheese": "String Cheese",
+  "wine": "Alcohol Free Wine",
+  "latitude": -37.81766,
+  "longitude": 144.97016
 }
 
 
 ### UPDATE PARK
 ### Update park with PUT with right authorisation (ie. admin)
-PUT http://localhost:3000/parks/9
+PUT http://localhost:3000/parks/4
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3NTh9.QtqX_W2e2U23ishBay7Jr3uh11g7-EuFLGW5_AlvA_g"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIwMzg4MjN9.CnHmMab7g_Rcv8746Fn4kp9Mxm21BxT4-NjkyeNHROk"
 
 {
-  "category_id": 1,
+  "category_id": 2,
   "feature_id": 2,
   "address_id": 3,
-  "name": "REDACTED",
-  "cheese": "REDACTED",
-  "wine": "REDACTED",
-  "latitude": 0,
-  "longitude": 0
+  "name": "Footscray Park",
+  "cheese": "Bocconcini",
+  "wine": "Viognier",
+  "latitude": -37.7930638,
+  "longitude": 144.9049412
 }
 
 ### Updating without authorisation
