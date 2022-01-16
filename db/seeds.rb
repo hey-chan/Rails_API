@@ -33,7 +33,7 @@ if Address.count == 0
   Address.create(street: "St Kilda Road", suburb: "Melbourne", postcode: "3004")
   Address.create(number: 1, street: "K Road", suburb: "Werribee", postcode: "3029")
   Address.create(number: 40, street: "Maribyrnong Blvd", suburb: "Footscray", postcode: "3011")
-  Address.create(number: 69, street: "Sex Blvd", suburb: "St Kilda", postcode: "3011")
+  Address.create(number: 69, street: "A Street", suburb: "St Kilda", postcode: "3011")
   puts "Created addresses"
 end
 
@@ -53,4 +53,4 @@ if Post.count == 0
   puts "Created post for park"
 end
 
-Park.first.picture.attach(io: File.open(File.join(Rails.root, "app/assets/images/testpic.jpeg")), filename: 'testpic.jpeg')
+Park.first.picture.attach(io: File.open(File.join(Rails.root, "app/assets/images/testpic.jpeg")), filename: "testpic.jpeg")
