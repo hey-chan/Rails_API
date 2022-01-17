@@ -7,9 +7,6 @@ GET http://localhost:3000/features
 ### RENDER ADDRESSES
 GET http://localhost:3000/addresses
 
-### PARK WITH ITS ADDRESS
-GET http://localhost:3000/parks/2/address
-
 ##############################################
 ### USERS
 ##############################################
@@ -70,6 +67,18 @@ Content-Type: application/json
   }
 }
 
+
+### SIGN IN with another normal user
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "auth": {
+    "signin": "chan",
+    "password": "patrick96"
+  }
+}
+
 ### SIGN IN with newly created test user (no admin)
 POST http://localhost:3000/auth/signin
 Content-Type: application/json
@@ -86,7 +95,7 @@ POST http://localhost:3000/auth/signed_in_user
 Content-Type: application/json
 
 {
-  "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3NTh9.QtqX_W2e2U23ishBay7Jr3uh11g7-EuFLGW5_AlvA_g"
+  "jwt": "yJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzNDI0MTB9.UTDz1lm-DfOJzcU81OOUfkOqmGfsu9vW4C0V9j0yJhw"
 } 
 
 
@@ -102,12 +111,11 @@ GET http://localhost:3000/parks/4
 ### RENDER an individual park (that DOESN'T exists)
 GET http://localhost:3000/parks/99
 
-
 ### CREATE A PARK
 ### POST a park request without a token or admin
 POST http://localhost:3000/parks/new
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDI0MTAyNzB9.CvcOE0dTCUUW3aNFnRExFCelTaonY14vBnCXkRXD8U4"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzOTg3MDR9.8iokFJSKNx7LtOJEL6ifN69bPOC5f9Q8dJM9yuJlIjk"
 
 {
   "category_id": 1,
@@ -123,30 +131,43 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDI0MTAy
 # NB: jwt will need to be updated each time after 1hr
 POST http://localhost:3000/parks/new
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzNDA5NDB9.3tGE9STaY6hB5Ma7T7QegSPbR5Te0MYYOf-Ox4olYFE"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzOTM4Njl9.xwyczOGILHlbRuLtLiR-x87ieCSNi4jhg_binVGK26g"
+
 
 {
   "category_id": 1,
   "feature_id": 2,
-  "address_id": 1,
-  "name": "A Beach again",
-
-  "latitude": -54.46675,
-  "longitude": 27.00203
+  "name": "This park should be able to post by Bob",
+  "cheese": "cheese we wont be able to eat",
+  "wine": "red wine we can't drink",
+  "latitude": -34.555,
+  "longitude": 144.00203
 }
+
+### NB: jwt will need to be updated each time after 1hr
+POST http://localhost:3000/parks/new
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzNDI0NjV9.N3F53FPRIPvjNf-KVBd38n1B9dfvXaXN-Jt7RYkcZUI"
+
+
+{
+  "category_id": 1,
+  "feature_id": 2,
+  "name": "This park should be able to post by Bob",
+
+}
+
 
 
 ### UPDATE PARK
 ### Update park with PUT with right authorisation (ie. admin)
 PUT http://localhost:3000/parks/4
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDI0MDM1Njd9.J40fKbXuSMnskHBbsa3QRa_1vd1KKg6AOaJP4mIrxBE"
-
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzNDI0NjV9.N3F53FPRIPvjNf-KVBd38n1B9dfvXaXN-Jt7RYkcZUI"
 
 {
-  "category_id": 2,
+  "category_id": 1,
   "feature_id": 2,
-  "address_id": 3,
   "name": "SimCity Park",
   "cheese": "Test",
   "wine": "Test",
@@ -157,12 +178,11 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDI0MDM1
 ### Updating without authorisation
 PUT http://localhost:3000/parks/1
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDI0MDM1Njd9.J40fKbXuSMnskHBbsa3QRa_1vd1KKg6AOaJP4mIrxBE"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDIzMDU2MTV9.6A-hY7YG56FXtAdTcrxJJXb7HXxjmlYJFPUXaB5QlFg"
 
 {
   "category_id": 1,
   "feature_id": 2,
-  "address_id": 3,
   "name": "Name should not be able to be change by normal user",
   "cheese": "A name that has changed",
   "wine": "A wine has changed",
@@ -185,6 +205,20 @@ DELETE http://localhost:3000/parks/100
 Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4NjR9.PINJBTdOLF5bpLAyP7I0k5Z3EtxeGtfDmYkFNwQBXkM"
 
 
+### PARK WITH ITS ADDRESS
+GET http://localhost:3000/parks/2/address
+
+
+### ADD ADDRESS TO PARK
+POST http://localhost:3000/parks/5/address
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzOTg3MDR9.8iokFJSKNx7LtOJEL6ifN69bPOC5f9Q8dJM9yuJlIjk"
+
+{
+  "park_id": 5, 
+  "street": "Somewhere Road",
+  "suburb": "Townsville",
+  "postcode": "1234"
+}
 
 
 ##############################################
@@ -271,28 +305,6 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIwNDk1
   "rating": 2
 }
 
-###
-POST http://localhost:3000/parks/4/address
-Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDI0MDcyMzd9.1fEwU5930fGE1-yC7vOlbvVKU0o7NaQ272uPqfL2tLs"
 
-{
-  "number": 3,
-  "street": "Somewhere Road",
-  "suburb": "Townsville",
-  "postcode": "1234"
-}
-
-###
-PATCH http://localhost:3000/parks/4/address
-Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDI0MDcyMzd9.1fEwU5930fGE1-yC7vOlbvVKU0o7NaQ272uPqfL2tLs"
-
-{
-  "number": 4,
-  "street": "Somewhere Road Changed",
-  "suburb": "Townsville",
-  "postcode": "12345"
-}
 
 

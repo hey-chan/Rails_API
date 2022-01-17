@@ -2,7 +2,6 @@ class User < ApplicationRecord
   has_secure_password
   has_many :posts
   has_many :parks
-  # has_many :addresses
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
   validates_format_of :username, with: /^[^@]+$/, multiline: true, message: "cannot have @ symbol in username"
