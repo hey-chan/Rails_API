@@ -36,6 +36,13 @@ if Park.count == 0
   puts "Created parks"
 end
 
+if Address.count == 0
+  Address.create(park_id: 1, street: "St Kilda Road", suburb: "Melbourne", postcode: "3004")
+  Address.create(park_id: 2, number: 1, street: "K Road", suburb: "Werribee", postcode: "3029")
+  Address.create(park_id: 3, number: 40, street: "Maribyrnong Blvd", suburb: "Footscray", postcode: "3011")
+  puts "Created addresses"
+end
+
 if Post.count == 0
   Post.create(user_id: rand(2) + 1, park_id: rand(2) + 1, comment: "This park is really pretty!!!!", rating: 4)
   Post.create(user_id: rand(2) + 1, park_id: rand(2) + 1, comment: "So many flowers!!! So many colours. So beautiful", rating: 5)
