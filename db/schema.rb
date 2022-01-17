@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_110007) do
+ActiveRecord::Schema.define(version: 2022_01_17_031527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2022_01_12_110007) do
     t.string "postcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "park_id", null: false
+    t.index ["park_id"], name: "index_addresses_on_park_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -67,7 +69,6 @@ ActiveRecord::Schema.define(version: 2022_01_12_110007) do
   create_table "parks", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.bigint "feature_id", null: false
-    t.bigint "address_id", null: false
     t.string "icon"
     t.string "name"
     t.string "cheese"
@@ -77,7 +78,6 @@ ActiveRecord::Schema.define(version: 2022_01_12_110007) do
     t.float "latitude"
     t.float "longitude"
     t.bigint "user_id", null: false
-    t.index ["address_id"], name: "index_parks_on_address_id"
     t.index ["category_id"], name: "index_parks_on_category_id"
     t.index ["feature_id"], name: "index_parks_on_feature_id"
     t.index ["user_id"], name: "index_parks_on_user_id"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_110007) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "parks", "addresses"
+  add_foreign_key "addresses", "parks"
   add_foreign_key "parks", "categories"
   add_foreign_key "parks", "features"
   add_foreign_key "parks", "users"
