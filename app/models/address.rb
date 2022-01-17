@@ -1,4 +1,4 @@
 class Address < ApplicationRecord
-  # belongs_to :park
-  has_one :park
+  belongs_to :park
+  # belongs_to :user
 end

@@ -7,8 +7,14 @@ Rails.application.routes.draw do
   ### SHOW all features
   get "/features", to: "features#index", as: "features"
 
-  ### SHOW all addresses
-  get "/addresses", to: "addresses#index", as: "addresses"
+  # Address for park: show
+  get "/parks/:park_id/address", to: "addresses#index"
+
+  # Create an address:
+  post "/parks/:park_id/address", to: "addresses#create"
+
+  # Edit an address:
+  patch "/parks/:park_id/address", to: "addresses#update"
 
   ### PARKS stuff
   get "/parks", to: "parks#index", as: "parks"
