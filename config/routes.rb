@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   ### SHOW all addresses
   get "/addresses", to: "addresses#index", as: "addresses"
 
+  ###
+
   ### PARKS stuff
   get "/parks", to: "parks#index", as: "parks"
 
@@ -22,6 +24,9 @@ Rails.application.routes.draw do
   # UPDATE a park (again restricted to admin)
   put "/parks/:id", to: "parks#update"
   patch "/parks/:id", to: "parks#update"
+
+  # Address for park: show
+  get "/parks/:park_id/address", to: "addresses#index"
 
   # DELETE a park (restricted to admin)
   delete "/parks/:id", to: "parks#destroy"
