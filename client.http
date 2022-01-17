@@ -140,8 +140,9 @@ PUT http://localhost:3000/parks/4
 Content-Type: application/json
 Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzMDU0NDR9.yuAzW0OKvpnuxt3sizPoENI9EZj-eEJfDQkOs2zOxMw"
 
+
 {
-  "category_id": 1,
+  "category_id": 2,
   "feature_id": 2,
   "address_id": 3,
   "name": "SimCity Park",
