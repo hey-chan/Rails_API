@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get "/parks/:id", to: "parks#show", as: "park"
 
   # POST a park (this will be restricted to ONLY admin)
-  post "/parks", to: "parks#create"
+  post "/parks/new", to: "parks#create"
 
   # UPDATE a park (again restricted to admin)
   put "/parks/:id", to: "parks#update"
