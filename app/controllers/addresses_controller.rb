@@ -1,16 +1,19 @@
 class AddressesController < ApplicationController
+  before_action :authenticate, only: [:create, :update, :destroy]
+  before_action :authorize, only: [:update, :destroy]
+
   def index
     addresses = Address.includes(:park).where("park_id = #{params[:park_id]}", "example").references(:park)
     render json: addresses, status: 200
   end
 
   def create
-    address = Address.create(post_params.to_h.merge(park_id: params[:park_id]))
-    render_post(address)
+    address = current_user.addresses.create(address_params.to_h.merge(park_id: params[:park_id]))
+    render_address(address)
   end
 
   def update
-    @address = Address.find(params[:id])
+    @address = Address.find(params[:park_id])
     @address.update(post_params)
   end
 
@@ -32,6 +35,7 @@ class AddressesController < ApplicationController
     rescue
       render json: { error: "Could not find this address" }, status: 404
     end
+    render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.id == 1
   end
 
   def set_address

@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   # Address for park: show
   get "/parks/:park_id/address", to: "addresses#index"
 
+  # Create an address:
+  post "/parks/:park_id/address", to: "addresses#create"
+
+  # Edit an address:
+  put "/parks/:park_id/address", to: "addresses#update"
+
   # DELETE a park (restricted to admin)
   delete "/parks/:id", to: "parks#destroy"
 

@@ -206,7 +206,7 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NTI4
 
 
 ### PARK WITH ITS ADDRESS
-GET http://localhost:3000/parks/1/address
+GET http://localhost:3000/parks/2
 
 
 
