@@ -53,4 +53,4 @@ if Post.count == 0
   puts "Created post for park"
 end
 
-Park.first.picture.attach(io: File.open(File.join(Rails.root, "app/assets/images/testpic.jpeg")), filename: "testpic.jpeg")
+# Park.first.picture.attach(io: File.open(File.join(Rails.root, "app/assets/images/testpic.jpeg")), filename: "testpic.jpeg")
