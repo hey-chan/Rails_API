@@ -10,7 +10,7 @@ PARKS_API is a database of small parks in Melbourne that aren't well documented 
 
 _Park details include:_
 
-- name
+- name 
 - address
 - category
 - feature
