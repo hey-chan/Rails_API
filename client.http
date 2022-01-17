@@ -102,9 +102,9 @@ GET http://localhost:3000/parks/99
 
 ### CREATE A PARK
 ### POST a park request without a token or admin
-POST http://localhost:3000/parks
+POST http://localhost:3000/parks/new
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NsadE5NTI3Njd9.sAoL5DbYuNDg_3IzDKg8wWPvDqRrLA1cZhAXpCfY19c"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDIzMDQ0NDJ9.qOzRS-XVGd14oI6gBpbMX8pCRZtZL9bJOvA12fH03W4"
 
 {
   "category_id": 1,
@@ -119,43 +119,42 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NsadE5NT
 
 ### POST with token and admin privilege
 # NB: jwt will need to be updated each time after 1hr
-POST http://localhost:3000/parks
+POST http://localhost:3000/parks/new
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5ODU1ODh9.DgGgbJx_3H3kdqOR00TmXRLarSepi-kIXWnD5JrDvDU"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzNDA5NDB9.3tGE9STaY6hB5Ma7T7QegSPbR5Te0MYYOf-Ox4olYFE"
 
 {
-  "category_id": 2,
-  "feature_id": 4,
-  "address_id": 3,
-  "name": "Eastern Beach",
-  "cheese": "Geelong cheese",
-  "wine": "Geelong wine",
+  "category_id": 1,
+  "feature_id": 2,
+  "address_id": 1,
+  "name": "A Beach again",
+
   "latitude": -54.46675,
-  "longitude": 27.00203,
+  "longitude": 27.00203
 }
 
 
 ### UPDATE PARK
 ### Update park with PUT with right authorisation (ie. admin)
-PUT http://localhost:3000/parks/9
+PUT http://localhost:3000/parks/4
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzU3NTh9.QtqX_W2e2U23ishBay7Jr3uh11g7-EuFLGW5_AlvA_g"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIzMDU0NDR9.yuAzW0OKvpnuxt3sizPoENI9EZj-eEJfDQkOs2zOxMw"
 
 {
   "category_id": 1,
   "feature_id": 2,
   "address_id": 3,
-  "name": "REDACTED",
-  "cheese": "REDACTED",
-  "wine": "REDACTED",
-  "latitude": 0,
-  "longitude": 0
+  "name": "SimCity Park",
+  "cheese": "Test",
+  "wine": "Test",
+  "latitude": 123,
+  "longitude": 3455
 }
 
 ### Updating without authorisation
 PUT http://localhost:3000/parks/1
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NTI3Njd9.sAoL5DbYuNDg_3IzDKg8wWPvDqRrLA1cZhAXpCfY19c"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDIzMDU2MTV9.6A-hY7YG56FXtAdTcrxJJXb7HXxjmlYJFPUXaB5QlFg"
 
 {
   "category_id": 1,
@@ -232,14 +231,25 @@ Content-Type: application/json
 ### POST a comment with JWT
 POST http://localhost:3000/parks/1/comments
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDE5NzYxMTl9.Y7LdV3EfHmbvznE20y_sHK5zh8S_-ECqSFeG-AeVVu0"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIwNDk1MDF9.hTLwNHFiZx23rZ_Xe47pDRJwTzsNLXLhz-ljFxp2V30"
 
 {
-  "comment": "Bob thinks this park is rad",
+  "comment": "Reacted",
   "rating": 5
 }
 
+
 ### POST a comment with JWT (again)
+POST http://localhost:3000/parks/2/comments
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDIwMjQ4Mzl9.ErjJTR_y3h1ZIxF4ZL4iIHrAZV5yY_ZJnRLLf4CmWTA"
+
+{
+  "comment": "Should not post if rating > 5",
+  "rating": 6
+}
+
+### POST a comment with correct JWT
 POST http://localhost:3000/parks/4/comments
 Content-Type: application/json
 Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4Mzh9.KQbPDid-KUSkMZaWYzghG_qWyyTsw-lFCA307dqnLSM"
@@ -248,14 +258,13 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzQ4
   "comment": "test-user1 thinks this is neat",
   "rating": 5
 }
-
 ###UPDATE A COMMENT
 PATCH http://localhost:3000/parks/comments/15
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDE5NzY4MzJ9.b_LJEWf8iN32rUDmeUSQ_lHXTUKe19eyyqOoU1sE_kw"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDIwNDk1MDF9.hTLwNHFiZx23rZ_Xe47pDRJwTzsNLXLhz-ljFxp2V30"
 
 {
-  "comment": "Comment is inappropriate",
+  "comment": "Comment is inappropriate - redacted",
   "rating": 2
 }
 

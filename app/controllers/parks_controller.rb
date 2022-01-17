@@ -5,7 +5,7 @@ class ParksController < ApplicationController
 
   # Show all parks available
   def index
-    parks = Park.all.includes(:category, :feature)
+    parks = Park.all.includes(:category, :feature, :address)
     render json: parks, include: { category: { only: :name }, feature: { only: :name }, address: { only: [:number, :street, :suburb, :postcode] } }, status: 200
     # render json: parks, include: ["category", "feature", "address"], status: 200
   end
@@ -49,7 +49,7 @@ class ParksController < ApplicationController
 
   def authorize
     # Permission for user to edit/update post
-    render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.id == 1
+    render json: { error: "You do not have permission to do that" }, status: 401 unless current_user.username == "admin"
   end
 
   def render_park(park)
