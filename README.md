@@ -1,31 +1,60 @@
 # PARKS_API
 
-## built for the Picnic Victoria App
+The PARKS_API is the Picnic Victoria App database, made for fake client Parks Victoria + the Victorian State Government.
 
-Just checking and testing that we are on the `dev` Branch.
-By default, you should be on the `dev` branch after forking from PicnicVic repo.
+### **What is PARKS_API?**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The PARKS_API was built to supply local park amenity data for the [Picnic Victoria App website](https://picnic-vic.netlify.app). [React Repo Here](https://github.com/PicnicVic/parks_react).
 
-Things you may want to cover:
+PARKS_API is a database of small parks in Melbourne that aren't well documented as the state parks as part of Parks Victoria's website.
+
+_Park details include:_
+
+- name 
+- address
+- category
+- feature
+- rating
+
+Only the **Admin** with authentication privilege can use CRUD functions to Create, Update and Delete parks.
+
+**Users** when signed into the app can only Read the posts and can not edit. **Users** can apply comments to the park as commentary to their experience.
+
+_Park Comment details include:_
+
+- Comment
+- Updated At
+- User who commented
+- Park the comment is applied too
+
+This database also doubles as the **User database** for those interacting with the Picnic Victoria App.
+
+_User details include:_
+
+- username
+- email
+- password
+
+### System & Gem dependencies
 
 - Ruby version: ruby 2.7.2p137
-
 - Rails version: rails 6.1.4.1
+- PostgreSQL: 'pg', '~> 1.1'
+- Bcrypt: 'bcrypt', '~> 3.1.7'
+- Rack CORS: 'rack-cors'
+- JWT Authentication: 'jwt'
+- AWS image buckets: "aws-sdk-s3", "~> 1.111"
 
-- System dependencies
+### Development & Testing Gem dependencies
 
-- Configuration
+- RSPEC: 'rspec-rails'
+- ByeBug: 'byebug'
+- FactoryBot: 'factory_bot_rails'
+- Database Cleaner: 'database_cleaner'
+- Controller Testing: 'rails-controller-testing'
 
-- Database creation: psql (14.0)
+### Endpoint definitions
 
-- Database initialization
+### Code snippets
 
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
+### Example responses
