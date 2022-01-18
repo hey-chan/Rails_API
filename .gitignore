@@ -27,4 +27,4 @@
 /config/master.key
 
 # Ignore credentials.yml.enc
-/config/credentials.yml.enc
+# /config/credentials.yml.enc
