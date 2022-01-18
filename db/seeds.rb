@@ -45,11 +45,11 @@ if Address.count == 0
 end
 
 if Park.count == 0
-  Park.create(category_id: 2, feature_id: 22, address_id: 1, user_id: 1, name: "All Nations Park", latitude: -37.7681, longitude: 145.0017)
+  Park.create(category_id: 2, feature_id: 12, address_id: 1, user_id: 1, name: "All Nations Park", latitude: -37.7681, longitude: 145.0017)
   Park.create(category_id: 4, feature_id: 2, address_id: 2, user_id: 1, name: "Royal Park", latitude: -37.79246, longitude: 144.9534)
-  Park.create(category_id: 3, feature_id: 23, address_id: 3, user_id: 1, name: "Alma Park", latitude: -37.8611, longitude: 144.9926)
+  Park.create(category_id: 3, feature_id: 8, address_id: 3, user_id: 1, name: "Alma Park", latitude: -37.8611, longitude: 144.9926)
   Park.create(category_id: 3, feature_id: 14, address_id: 4, user_id: 1, name: "T.W. Andrews Reserve", latitude: -37.7166, longitude: 145.0170)
-  Park.create(category_id: 5, feature_id: 24, address_id: 5, user_id: 1, name: "Queens Park", latitude: -37.7678, longitude: 144.9221)
+  Park.create(category_id: 5, feature_id: 20, address_id: 5, user_id: 1, name: "Queens Park", latitude: -37.7678, longitude: 144.9221)
   Park.create(category_id: 3, feature_id: 18, address_id: 6, user_id: 1, name: "Pipemakers Park", latitude: -37.7789, longitude: 144.8945)
   Park.create(category_id: 6, feature_id: 15, address_id: 7, user_id: 1, name: "Point Gellibrand Coastal Heritage Park", latitude: -37.8737, longitude: 144.8892)
   Park.create(category_id: 3, feature_id: 15, address_id: 8, user_id: 1, name: "Werribee Park Mansion", latitude: -37.9396, longitude: 144.6713)
@@ -59,12 +59,12 @@ if Park.count == 0
 end
 
 if Post.count == 0
-  Post.create(user_id: rand(2) + 1, park_id: rand(Park.count) + 1, comment: "This park is really pretty!!!!", rating: 4)
-  Post.create(user_id: rand(2) + 1, park_id: rand(Park.count) + 1, comment: "So many flowers!!! So many colours. So beautiful", rating: 5)
-  Post.create(user_id: rand(2) + 1, park_id: rand(Park.count) + 1, comment: "Pretty meh park", rating: 1)
-  Post.create(user_id: rand(2) + 1, park_id: rand(Park.count) + 1, comment: "Worse park is the history of all parks!", rating: 2)
-  Post.create(user_id: rand(2) + 1, park_id: rand(Park.count) + 1, comment: "This park's playground has no fences and isn't appropriate for children.", rating: 2)
-  Post.create(user_id: rand(2) + 1, park_id: rand(Park.count) + 1, comment: "This is a park that exists", rating: 2)
+  Post.create(user_id: rand(2) + 1, park_id: 1, comment: "This park is really pretty!!!!", rating: 4)
+  Post.create(user_id: rand(2) + 1, park_id: 2, comment: "So many flowers!!! So many colours. So beautiful", rating: 5)
+  Post.create(user_id: rand(2) + 1, park_id: 3, comment: "Pretty meh park", rating: 1)
+  Post.create(user_id: rand(2) + 1, park_id: 4, comment: "Worse park is the history of all parks!", rating: 2)
+  Post.create(user_id: rand(2) + 1, park_id: 5, comment: "This park's playground has no fences and isn't appropriate for children.", rating: 2)
+  Post.create(user_id: rand(2) + 1, park_id: 6, comment: "This is a park that exists", rating: 2)
   puts "I got yelled at for having my dog off leash."
 end
 
