@@ -53,8 +53,3 @@ _User details include:_
 - Database Cleaner: 'database_cleaner'
 - Controller Testing: 'rails-controller-testing'
 
-### Endpoint definitions
-
-### Code snippets
-
-### Example responses
